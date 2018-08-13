@@ -1,4 +1,4 @@
-package cptech.com.controltutor.Interface;
+package cptech.com.controltutor.Interface.Menus;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
