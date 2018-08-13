@@ -10,8 +10,17 @@ public class Codigos {
     private String enunciado;
     private byte[] resolucao;
     private int avaliacao;
+    private Discente discente;
 
     public Codigos() {
+    }
+
+    public Discente getDiscente() {
+        return discente;
+    }
+
+    public void setDiscente(Discente discente) {
+        this.discente = discente;
     }
 
     public Long getId() {

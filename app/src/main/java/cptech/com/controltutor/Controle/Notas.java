@@ -9,6 +9,18 @@ public class Notas {
     private int bimestre;
     private int prova;
     private float nota;
+    private Discente discente;
+
+    public Notas() {
+    }
+
+    public Discente getDiscente() {
+        return discente;
+    }
+
+    public void setDiscente(Discente discente) {
+        this.discente = discente;
+    }
 
     public Long getId() {
         return id;
