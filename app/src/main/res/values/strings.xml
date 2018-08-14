@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">ControlTutor</string>
+    <string name="app_name">Minerva Office</string>
+    <string name="tela_aluno">Perfil do Aluno</string>
+    <string name="tela_professor">Perfil do Professor</string>
+    <string name="tela_tutor">Perfil do Tutor</string>
+    <string name="autoria">Desenvolvido por Coffee Power.</string>
 </resources>
