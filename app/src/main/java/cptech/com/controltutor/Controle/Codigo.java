@@ -4,7 +4,7 @@ package cptech.com.controltutor.Controle;
  * Created by Aluno on 10/08/2018.
  */
 
-public class Codigos {
+public class Codigo {
     private Long id;
     private boolean ativo;
     private String enunciado;
@@ -12,7 +12,7 @@ public class Codigos {
     private int avaliacao;
     private Discente discente;
 
-    public Codigos() {
+    public Codigo() {
     }
 
     public Discente getDiscente() {

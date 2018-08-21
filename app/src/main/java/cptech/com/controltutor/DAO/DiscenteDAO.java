@@ -1,29 +1,33 @@
 package cptech.com.controltutor.DAO;
 
+import cptech.com.controltutor.Controle.Discente;
+
 /**
  * Created by Aluno on 13/08/2018.
  */
 
-public class DiscenteDAO<T> implements InterfaceDAO<T> {
-    private static final String URl = "";
-    private static final String NAMESPACE = "";
-    @Override
-    public String adicionar(T classe) {
+public class DiscenteDAO  {
+
+    private static final String SALVAR = "salvar";
+    private static final String DELETAR = "deletar";
+    private static final String ATUALIZAR = "atualizar";
+    private static final String FIND_BY_ID = "procurarID";
+    private static final String FIND_BY_TURMA = "procurarByTurma";
+    private static final String LISTAR_TODOS = "Listar";
+
+    public String adicionar() {
         return null;
     }
 
-    @Override
-    public String excluir(T classe) {
+    public String excluir() {
         return null;
     }
 
-    @Override
-    public String alterar(T classe) {
+    public String alterar() {
         return null;
     }
 
-    @Override
-    public T buscarByID(int id) {
+    public Discente buscarByID() {
         return null;
     }
 }

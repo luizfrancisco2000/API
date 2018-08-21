@@ -11,7 +11,7 @@ public class Discente extends Usuario {
     private Professor professor;
     private Tutor tutor;
     private List<Notas> notas;
-    private List<Codigos> codigos;
+    private List<Codigo> codigos;
 
     public Discente() {
     }
@@ -48,11 +48,11 @@ public class Discente extends Usuario {
         this.notas = notas;
     }
 
-    public List<Codigos> getCodigos() {
+    public List<Codigo> getCodigos() {
         return codigos;
     }
 
-    public void setCodigos(List<Codigos> codigos) {
+    public void setCodigos(List<Codigo> codigos) {
         this.codigos = codigos;
     }
 }
