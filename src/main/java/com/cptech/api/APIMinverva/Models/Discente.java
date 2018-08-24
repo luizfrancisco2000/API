@@ -18,7 +18,7 @@ import static javax.persistence.CascadeType.ALL;
 @Table(name="discente")
 public class Discente extends Usuario implements Serializable {
     
-    @Column(name = "turma", nullable = false, length = 5)
+    @Column(name = "turma", nullable = false, length = 8)
     private String turma;
     
     @ManyToOne
