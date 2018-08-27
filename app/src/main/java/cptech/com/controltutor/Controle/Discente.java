@@ -1,5 +1,7 @@
 package cptech.com.controltutor.Controle;
 
+import android.support.annotation.TransitionRes;
+
 import java.util.List;
 
 /**
@@ -12,7 +14,7 @@ public class Discente extends Usuario {
     private Tutor tutor;
     private List<Notas> notas;
     private List<Codigo> codigos;
-
+    public static Usuario user;
     public Discente() {
     }
 
