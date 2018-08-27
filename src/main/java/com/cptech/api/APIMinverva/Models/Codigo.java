@@ -20,11 +20,7 @@ public class Codigo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    /**
-     * Quando o professor bloquear as questões em momentos de provas
-     */
-    @Column(name="ativo", nullable=false, length=1)
-    private boolean ativo;
+
     
     @Column(name="enunciado", nullable=false, length=255)
     private String enunciado;
@@ -49,14 +45,6 @@ public class Codigo implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
     }
 
     public String getEnunciado() {

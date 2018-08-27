@@ -15,30 +15,36 @@ import static javax.persistence.CascadeType.ALL;
  * @author Aluno
  */
 @Entity
-@Table(name="discente")
+@Table(name = "discente")
 public class Discente extends Usuario implements Serializable {
-    
+
     @Column(name = "turma", nullable = false, length = 8)
     private String turma;
-    
+
     @ManyToOne
     @JoinColumn(name = "professor", nullable = true)
     private Professor professor;
-       
+
     @ManyToOne
     @JoinColumn(name = "tutor", nullable = true)
     private Tutor tutor;
-    
+
     @OneToMany(cascade = ALL)
     private List<Nota> notas;
-   
+
     @OneToMany(cascade = ALL, mappedBy = "discente")
     private List<Codigo> codigos;
+
+    /**
+     * Quando o professor bloquear as questões em momentos de provas
+     */
+    @Column(name = "ativo", nullable = false, length = 1)
+    private boolean ativo;
+    
 
     public Discente() {
     }
 
-    
     public String getTurma() {
         return turma;
     }
@@ -78,7 +84,12 @@ public class Discente extends Usuario implements Serializable {
     public void setCodigos(List<Codigo> codigos) {
         this.codigos = codigos;
     }
-    
-    
-    
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
 }

@@ -8,6 +8,7 @@ package com.cptech.api.APIMinverva.Controller;
 import com.cptech.api.APIMinverva.Exception.ResourceNotFoundException;
 import com.cptech.api.APIMinverva.Models.Discente;
 import com.cptech.api.APIMinverva.Repository.DiscenteRepository;
+import java.util.Iterator;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,17 @@ public class DiscenteController {
                 .orElseThrow(() -> new ResourceNotFoundException("Dicente","id", discenteId));
     }
     
+    @GetMapping("/discente/{login}/{senha}")
+    public Discente loginDiscente(@PathVariable(value="login") String userDiscente, @PathVariable(value="senha") String senhaDiscente){
+        List<Discente> discentes = discenterepostorio.findAll();
+        for (Discente aux : discentes) {
+            if(aux.getUsuario().equals(userDiscente) && aux.getSenha().equals(senhaDiscente) && aux.getTipo()=='A'){
+                return aux;
+            }
+        }
+        return null;
+    }
+    
     @PostMapping("/alternativas")
     public Discente createDiscente(@Valid @RequestBody Discente discente){
         return discenterepostorio.save(discente);
@@ -78,5 +90,4 @@ public class DiscenteController {
         return ResponseEntity.ok().build();
         
     }
-    
 } 
