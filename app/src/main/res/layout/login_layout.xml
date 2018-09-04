@@ -39,8 +39,8 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancelar"
-                android:id="@+id/bottonCancel"
+                android:text="Cada"
+                android:id="@+id/bottonCad"
                 android:textAllCaps="false"
                 />
             <Button

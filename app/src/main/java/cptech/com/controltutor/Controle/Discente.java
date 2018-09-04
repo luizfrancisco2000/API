@@ -14,7 +14,13 @@ public class Discente extends Usuario {
     private Tutor tutor;
     private List<Notas> notas;
     private List<Codigo> codigos;
-    public static Usuario user;
+    public static Discente instance;
+    public static Discente getInstance() {
+        if(instance == null) {
+            instance = new Discente();
+        }
+        return instance;
+    }
     public Discente() {
     }
 

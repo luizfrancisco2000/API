@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Interface.Menus.cadastro"></activity>
+        <activity android:name=".Interface.Menus.CadastroDiscente"></activity>
     </application>
 
 </manifest>
