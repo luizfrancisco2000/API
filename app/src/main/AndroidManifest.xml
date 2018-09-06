@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Interface.Menus.CadastroDiscente"></activity>
+        <activity android:name=".Interface.Menus.CadastroDiscente" />
+        <activity android:name=".PerfilAlunoActivity"></activity>
     </application>
 
 </manifest>
