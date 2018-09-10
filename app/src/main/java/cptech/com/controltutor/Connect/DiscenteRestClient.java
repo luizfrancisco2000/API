@@ -7,9 +7,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -17,7 +15,7 @@ import java.util.HashMap;
 import cptech.com.controltutor.Controle.Discente;
 
 public class DiscenteRestClient {
-    private final String BASE_URL = "http://10.100.45.241:8000/api/discente/";
+    private final String BASE_URL = "http://10.100.37.192:8000/discente/";
     private RestTemplate restTemplate;
     private String url;
 
@@ -26,7 +24,7 @@ public class DiscenteRestClient {
     }
 
     public boolean insertDiscente(Discente discente) {
-        url = BASE_URL;
+        url = BASE_URL + "cadastrar";
         try {
             HashMap<String, Object> valuesDiscente = new HashMap<>();
             valuesDiscente.put("usuario", discente.getUsuario());
@@ -60,15 +58,11 @@ public class DiscenteRestClient {
     public Discente loginDiscente(String user, String senha){
 
         Log.d("user e senha", "user: "+user+" senha: "+senha);
-        url = BASE_URL;
+        url = BASE_URL + "executar/"+user+"/"+senha;
         try{
-            HashMap<String, Object> valuesDiscente = new HashMap<>();
-            valuesDiscente.put("login", user);
-            valuesDiscente.put("senha", senha);
-            ResponseEntity<Discente> responseEntity = new ResponseEntity<Discente>(HttpStatus.DESTINATION_LOCKED);
             Discente discente = Discente.getInstance();
-            responseEntity = restTemplate.getForEntity(url,Discente.class,valuesDiscente);
-            discente = responseEntity.getBody();
+                    discente = restTemplate.exchange(url, HttpMethod.GET, null,
+                    new ParameterizedTypeReference<Discente>() {}).getBody();
             Log.d("nome", discente.getNome());
             return discente;
         }catch (Exception e){
