@@ -15,7 +15,7 @@ import java.util.HashMap;
 import cptech.com.controltutor.Controle.Discente;
 
 public class DiscenteRestClient {
-    private final String BASE_URL = "http://10.100.37.192:8000/discente/";
+    private final String BASE_URL = "http://10.100.37.192:8000/api/discente/";
     private RestTemplate restTemplate;
     private String url;
 
