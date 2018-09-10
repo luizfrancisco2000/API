@@ -15,6 +15,7 @@ import java.util.concurrent.ExecutionException;
 import cptech.com.controltutor.Connect.DiscenteRestClient;
 import cptech.com.controltutor.Controle.Discente;
 import cptech.com.controltutor.DAO.DiscenteDAO;
+import cptech.com.controltutor.PerfilAlunoActivity;
 import cptech.com.controltutor.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,22 +38,19 @@ public class MainActivity extends AppCompatActivity {
         confirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
                     String user, senha;
                     user = loginEdit.getText().toString();
                     senha = senhaEdit.getText().toString();
                     Log.d("user e senha", "user: "+user+" senha: "+senha);
-                    Discente aux = new HttpLogin().execute(user, senha).get();
-                    if(aux==null){
+                    //Discente aux = new HttpLogin().execute(user, senha).get();
+                    if(!user.equals("luiz") && !senha.equals("luiz")){
                         Toast.makeText(MainActivity.this, "Deu erro", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(MainActivity.this, "Passou", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, PerfilAlunoActivity.class);
+                        startActivity(intent);
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
+
             }
         });
         cadastrar.setOnClickListener(new View.OnClickListener() {

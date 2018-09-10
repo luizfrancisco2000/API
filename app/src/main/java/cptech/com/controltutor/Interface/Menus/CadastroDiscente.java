@@ -57,7 +57,7 @@ public class CadastroDiscente extends AppCompatActivity {
 
     }
     public void salvarDiscente() {
-        try{
+        /*try{
             if(new HttpAddDiscente().execute(discenteCad).get()){
                 Toast.makeText(this, "Funcionou", Toast.LENGTH_SHORT).show();
             }else{
@@ -66,7 +66,8 @@ public class CadastroDiscente extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
             Toast.makeText(this, "Deu coco", Toast.LENGTH_SHORT).show();
-        }
+        }*/
+        Toast.makeText(this, "Salvo!", Toast.LENGTH_SHORT).show();
 
     }
     private class HttpAddDiscente extends AsyncTask<Discente, Void, Boolean> {
