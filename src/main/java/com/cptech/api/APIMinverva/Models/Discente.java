@@ -20,18 +20,14 @@ public class Discente extends Usuario implements Serializable {
 
     @Column(name = "turma", nullable = false, length = 8)
     private String turma;
-
     @ManyToOne
     @JoinColumn(name = "professor", nullable = true)
     private Professor professor;
-
     @ManyToOne
     @JoinColumn(name = "tutor", nullable = true)
     private Tutor tutor;
-
     @OneToMany(cascade = ALL)
     private List<Nota> notas;
-
     @OneToMany(cascade = ALL, mappedBy = "discente")
     private List<Codigo> codigos;
 
