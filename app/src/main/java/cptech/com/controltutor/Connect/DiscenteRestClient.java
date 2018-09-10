@@ -15,7 +15,9 @@ import java.util.HashMap;
 import cptech.com.controltutor.Controle.Discente;
 
 public class DiscenteRestClient {
-    private final String BASE_URL = "http://10.100.37.192:8000/api/discente/";
+    //http://10.100.37.192:8000
+    //http://10.100.45.241:8000
+    private final String BASE_URL = "http://10.100.45.241:8000/discente/";
     private RestTemplate restTemplate;
     private String url;
 
@@ -61,11 +63,12 @@ public class DiscenteRestClient {
         url = BASE_URL + "executar/"+user+"/"+senha;
         try{
             Discente discente = Discente.getInstance();
-                    discente = restTemplate.exchange(url, HttpMethod.GET, null,
-                    new ParameterizedTypeReference<Discente>() {}).getBody();
-            Log.d("nome", discente.getNome());
+            restTemplate.exchange(url,HttpMethod.GET,null, new ParameterizedTypeReference<Discente>() {}).getBody();
+           /* restTemplate.exchange(url, HttpMethod.GET, null,
+                    new ParameterizedTypeReference<Discente>() {}).getBody();*/
             return discente;
         }catch (Exception e){
+            e.printStackTrace();
             return null;
         }
     }

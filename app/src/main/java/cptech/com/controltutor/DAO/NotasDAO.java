@@ -1,6 +1,6 @@
 package cptech.com.controltutor.DAO;
 
-import cptech.com.controltutor.Controle.Notas;
+import cptech.com.controltutor.Controle.Nota;
 
 /**
  * Created by Aluno on 13/08/2018.
@@ -23,7 +23,7 @@ public class NotasDAO{
         return null;
     }
 
-    public Notas buscarByID() {
+    public Nota buscarByID() {
         return null;
     }
 }

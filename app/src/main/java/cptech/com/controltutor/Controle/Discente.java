@@ -1,7 +1,5 @@
 package cptech.com.controltutor.Controle;
 
-import android.support.annotation.TransitionRes;
-
 import java.util.List;
 
 /**
@@ -9,10 +7,16 @@ import java.util.List;
  */
 
 public class Discente extends Usuario {
+    private boolean ativo;
+
     private String turma;
+
     private Professor professor;
+
     private Tutor tutor;
-    private List<Notas> notas;
+
+    private List<Nota> notas;
+
     private List<Codigo> codigos;
     public static Discente instance;
     public static Discente getInstance() {
@@ -22,6 +26,14 @@ public class Discente extends Usuario {
         return instance;
     }
     public Discente() {
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
     public String getTurma() {
@@ -48,11 +60,11 @@ public class Discente extends Usuario {
         this.tutor = tutor;
     }
 
-    public List<Notas> getNotas() {
+    public List<Nota> getNotas() {
         return notas;
     }
 
-    public void setNotas(List<Notas> notas) {
+    public void setNotas(List<Nota> notas) {
         this.notas = notas;
     }
 

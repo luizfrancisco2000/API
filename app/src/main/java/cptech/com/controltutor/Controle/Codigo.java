@@ -6,7 +6,6 @@ package cptech.com.controltutor.Controle;
 
 public class Codigo {
     private Long id;
-    private boolean ativo;
     private String enunciado;
     private byte[] resolucao;
     private int avaliacao;
@@ -31,13 +30,6 @@ public class Codigo {
         this.id = id;
     }
 
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
 
     public String getEnunciado() {
         return enunciado;

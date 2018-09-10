@@ -42,15 +42,21 @@ public class MainActivity extends AppCompatActivity {
                     user = loginEdit.getText().toString();
                     senha = senhaEdit.getText().toString();
                     Log.d("user e senha", "user: "+user+" senha: "+senha);
-                    //Discente aux = new HttpLogin().execute(user, senha).get();
-                    if(!user.equals("luiz") && !senha.equals("luiz")){
+                Discente aux = null;
+                try {
+                    aux = new HttpLogin().execute(user, senha).get();
+                    if(aux==null){
                         Toast.makeText(MainActivity.this, "Deu erro", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(MainActivity.this, "Passou", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, PerfilAlunoActivity.class);
                         startActivity(intent);
                     }
-
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
             }
         });
         cadastrar.setOnClickListener(new View.OnClickListener() {

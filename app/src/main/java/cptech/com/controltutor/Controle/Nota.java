@@ -4,14 +4,14 @@ package cptech.com.controltutor.Controle;
  * Created by Aluno on 10/08/2018.
  */
 
-public class Notas {
+public class Nota {
     private Long id;
     private int bimestre;
     private int prova;
     private float nota;
     private Discente discente;
 
-    public Notas() {
+    public Nota() {
     }
 
     public Discente getDiscente() {
