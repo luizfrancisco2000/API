@@ -13,5 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Aluno
  */
 public interface DiscenteRepository extends JpaRepository<Discente, Long> {
-    
+    public Discente getByUsuario(String usuario);
 }

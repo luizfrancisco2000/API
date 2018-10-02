@@ -30,17 +30,24 @@ public class Discente extends Usuario implements Serializable {
     private List<Nota> notas;
     @OneToMany(cascade = ALL, mappedBy = "discente")
     private List<Codigo> codigos;
-
     /**
      * Quando o professor bloquear as questões em momentos de provas
      */
     @Column(name = "ativo", nullable = false, length = 1)
     private boolean ativo;
     
-
+    private static Discente instance;
+    
+    public static Discente getInstance(){
+        if(instance == null){
+            instance = new Discente();
+        }
+        return instance;
+    }
+    
     public Discente() {
     }
-
+    
     public String getTurma() {
         return turma;
     }

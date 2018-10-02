@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,24 +26,34 @@ import org.springframework.web.bind.annotation.*;
 public class DiscenteController {
     
     @Autowired
-    DiscenteRepository discenterepostorio;
+    DiscenteRepository discenterepositorio;
     
-    @GetMapping("/discente")
-    public List<Discente> getAllDiscente(){
-        Discente discente = new Discente();
-        discente.setCodigos(null);
-        discente.setNome("Chico");
-        discente.setNotas(null);
-        discente.setProfessor(null);
-        discente.setSenha("chiquinho123");
-        discente.setTipo('A');
-        discente.setTurma("IINF11-B");
-        discente.setTutor(null);
-        discente.setUsuario("chiquinho123");
-        discenterepostorio.save(discente);
-        return discenterepostorio.findAll();
+    @RequestMapping(method = RequestMethod.GET, path = "/discente")
+    public ResponseEntity<?> getAllDiscente(){
+        return new ResponseEntity<>(discenterepositorio.findAll(),HttpStatus.OK);
     }
     
+    //Cria um discente.
+    @RequestMapping(method = RequestMethod.POST, path = "/discente/cadastrar")
+    public ResponseEntity<?> insertProfessor(@Valid @RequestBody Discente discente) {
+        return new ResponseEntity<>(discenterepositorio.save(discente), HttpStatus.OK);
+    }
+    
+    @RequestMapping(method = RequestMethod.GET, path = "/discente/executar_login/{user}/{senha}")
+    public ResponseEntity<?> login(@PathVariable("user") String user, @PathVariable("senha") String senha) {
+        Discente discente;
+        discente = Discente.getInstance();
+        discente = discenterepositorio.getByUsuario(user);
+        if (discente != null) {
+            if (discente.getSenha().equals(senha)) {
+                if(discente.getTipo()=='A'){
+                    return new ResponseEntity<>(discente, HttpStatus.OK);
+                }
+            }
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    /*
     @GetMapping("/discente/{id}")
     public Discente getDiscenteById(@PathVariable(value = "id")Long discenteId){
         return (Discente) discenterepostorio.findById(discenteId)
@@ -89,5 +100,5 @@ public class DiscenteController {
         
         return ResponseEntity.ok().build();
         
-    }
+    }*/
 } 
