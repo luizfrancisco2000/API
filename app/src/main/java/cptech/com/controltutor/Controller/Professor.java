@@ -1,12 +1,13 @@
-package cptech.com.controltutor.Controle;
+package cptech.com.controltutor.Controller;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Aluno on 10/08/2018.
  */
 
-public class Professor extends Usuario {
+public class Professor extends Usuario implements Serializable {
     private List<Tutor> tutores;
     private List<Discente> discentes;
     private List<Lista> listas;

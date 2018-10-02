@@ -1,4 +1,4 @@
-package cptech.com.controltutor.Controle;
+package cptech.com.controltutor.Controller;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,8 +7,7 @@ import java.util.List;
  * Created by Aluno on 10/08/2018.
  */
 
-public class Discente extends Usuario implements Serializable{
-    private boolean ativo;
+public class Discente extends Usuario implements Serializable {
 
     private String turma;
 
@@ -19,9 +18,10 @@ public class Discente extends Usuario implements Serializable{
     private List<Nota> notas;
 
     private List<Codigo> codigos;
-    public static Discente instance;
 
-    
+    private boolean ativo;
+
+    public static Discente instance;
     public static Discente getInstance() {
         if(instance == null) {
             instance = new Discente();
@@ -29,14 +29,6 @@ public class Discente extends Usuario implements Serializable{
         return instance;
     }
     public Discente() {
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
     }
 
     public String getTurma() {
@@ -77,5 +69,13 @@ public class Discente extends Usuario implements Serializable{
 
     public void setCodigos(List<Codigo> codigos) {
         this.codigos = codigos;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 }

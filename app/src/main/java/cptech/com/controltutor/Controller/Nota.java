@@ -1,10 +1,12 @@
-package cptech.com.controltutor.Controle;
+package cptech.com.controltutor.Controller;
+
+import java.io.Serializable;
 
 /**
  * Created by Aluno on 10/08/2018.
  */
 
-public class Nota {
+public class Nota implements Serializable {
     private Long id;
     private int bimestre;
     private int prova;

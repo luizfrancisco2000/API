@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import cptech.com.controltutor.Connect.DiscenteRestClient;
-import cptech.com.controltutor.Controle.Discente;
+import cptech.com.controltutor.Controller.Discente;
 import cptech.com.controltutor.R;
 
 public class CadastroDiscente extends AppCompatActivity {
@@ -54,6 +54,7 @@ public class CadastroDiscente extends AppCompatActivity {
         discenteCad.setNotas(null);
         discenteCad.setProfessor(null);
         discenteCad.setTutor(null);
+        discenteCad.setAtivo(false);
 
     }
     public void salvarDiscente() {

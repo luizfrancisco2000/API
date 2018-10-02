@@ -1,4 +1,6 @@
-package cptech.com.controltutor.Controle;
+package cptech.com.controltutor.Controller;
+
+import java.io.Serializable;
 
 import java.io.Serializable;
 
@@ -14,6 +16,14 @@ public class Usuario implements Serializable {
     private String senha;
 
     public Usuario() {
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public Long getId() {
@@ -46,13 +56,5 @@ public class Usuario implements Serializable {
 
     public void setTipo(char tipo) {
         this.tipo = tipo;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 }

@@ -1,16 +1,6 @@
 package cptech.com.controltutor.DAO;
 
-import android.os.AsyncTask;
-
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Collections;
-
-import cptech.com.controltutor.Controle.Discente;
+import cptech.com.controltutor.Controller.Discente;
 
 /**
  * Created by Aluno on 13/08/2018.
