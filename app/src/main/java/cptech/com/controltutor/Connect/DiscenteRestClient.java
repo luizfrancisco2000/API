@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 
-import cptech.com.controltutor.Controller.Discente;
+import cptech.com.controltutor.Controle.Discente;
 
 public class DiscenteRestClient {
     //http://10.100.37.192:8000
@@ -84,4 +84,24 @@ public class DiscenteRestClient {
         }
         return discente;
     }
+
+/*    public boolean procurarId(Long id) {
+
+        url = BASE_URL + id;
+        Discente discente = Discente.getInstance();
+        try{
+
+            ResponseEntity<Discente> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<Discente>() {});
+            discente = response.getBody();
+            Discente.setInstance(discente);
+            /*discente = restTemplate.exchange(url,HttpMethod.GET,null,
+                    new ParameterizedTypeReference<Discente>(){}).getBody();
+           /* restTemplate.exchange(url, HttpMethod.GET, null,
+                    new ParameterizedTypeReference<Discente>() {}).getBody();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }*/
 }

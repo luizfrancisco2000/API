@@ -2,8 +2,12 @@ package cptech.com.controltutor.Controle;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import cptech.com.controltutor.Connect.UserRestClient;
 
 /**
  * Created by Aluno on 04/10/2018.
@@ -38,12 +42,45 @@ public class SessionController {
     }
 
     public String delete(){
-        String sql = SessionUserController.ID+"IS NOT NULL";
-        int situacao = db.delete(SessionUserController.TABELA,sql,null);
+        sql = SessionUserController.ID+" IS NOT NULL";
+        db = session.getWritableDatabase();
+        int situacao = db.delete(SessionUserController.TABELA, sql,null);
         if(situacao==-1){
             return "coco";
         }else{
             return "apagado";
         }
+    }
+
+    public long findAll(){
+        Cursor cursor;
+        String elements[] = new String[]{SessionUserController.ID, SessionUserController.NOME, SessionUserController.TIPO, SessionUserController.USUARIO};
+        db = session.getReadableDatabase();
+        Cursor cur = db.rawQuery("SELECT COUNT(*) FROM "+ SessionUserController.TABELA, null);
+        long id=-1;
+        if (cur != null) {
+            cur.moveToFirst();
+            if (cur.getInt (0) == 0) {
+                return id;
+            } else {
+                cur.close();
+                try {
+                    cursor = db.query(SessionUserController.TABELA, elements, null, null, null, null, null, null);
+                    if (cursor != null) {
+                        cursor.moveToFirst();
+                        id = cursor.getLong(cursor.getColumnIndex(SessionUserController.ID));
+                        UserRestClient.tipo = cursor.getString(cursor.getColumnIndex(SessionUserController.TIPO)).charAt(0);
+                        Log.d("Teste", String.valueOf(id));
+                        return id;
+                    }
+                }catch (CursorIndexOutOfBoundsException e){
+                    e.printStackTrace();
+                }
+                finally {
+                    return id;
+                }
+            }
+        }
+        return id;
     }
 }

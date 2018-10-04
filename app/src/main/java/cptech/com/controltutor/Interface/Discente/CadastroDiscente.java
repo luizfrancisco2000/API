@@ -1,4 +1,4 @@
-package cptech.com.controltutor.Interface.Menus;
+package cptech.com.controltutor.Interface.Discente;
 
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import cptech.com.controltutor.Connect.DiscenteRestClient;
-import cptech.com.controltutor.Controller.Discente;
+import cptech.com.controltutor.Controle.Discente;
 import cptech.com.controltutor.R;
 
 public class CadastroDiscente extends AppCompatActivity {

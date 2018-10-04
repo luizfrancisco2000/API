@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f5fffa"
-    tools:context="cptech.com.controltutor.Interface.Menus.MainActivity">
+    tools:context="cptech.com.controltutor.Interface.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,6 +1,6 @@
 package cptech.com.controltutor.DAO;
 
-import cptech.com.controltutor.Controller.Professor;
+import cptech.com.controltutor.Controle.Professor;
 
 /**
  * Created by Aluno on 13/08/2018.

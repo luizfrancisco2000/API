@@ -1,6 +1,6 @@
 package cptech.com.controltutor.DAO;
 
-import cptech.com.controltutor.Controller.Discente;
+import cptech.com.controltutor.Controle.Discente;
 
 /**
  * Created by Aluno on 13/08/2018.

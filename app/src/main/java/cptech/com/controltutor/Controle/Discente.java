@@ -1,4 +1,4 @@
-package cptech.com.controltutor.Controller;
+package cptech.com.controltutor.Controle;
 
 import java.io.Serializable;
 import java.util.List;
@@ -22,11 +22,16 @@ public class Discente extends Usuario implements Serializable {
     private boolean ativo;
 
     public static Discente instance;
+
     public static Discente getInstance() {
         if(instance == null) {
             instance = new Discente();
         }
         return instance;
+    }
+
+    public static void setInstance(Discente discente){
+        instance = discente;
     }
     public Discente() {
     }

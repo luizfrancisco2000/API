@@ -5,8 +5,8 @@ import android.os.AsyncTask;
 
 import org.springframework.http.ResponseEntity;
 
-import cptech.com.controltutor.Controller.Codigo;
-import cptech.com.controltutor.Controller.Discente;
+import cptech.com.controltutor.Controle.Codigo;
+import cptech.com.controltutor.Controle.Discente;
 
 /**
  * Created by Aluno on 13/08/2018.

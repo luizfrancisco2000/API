@@ -1,4 +1,4 @@
-package cptech.com.controltutor.Controller;
+package cptech.com.controltutor.Controle;
 
 import java.io.Serializable;
 import java.util.List;
