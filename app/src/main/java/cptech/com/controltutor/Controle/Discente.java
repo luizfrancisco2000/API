@@ -1,12 +1,13 @@
 package cptech.com.controltutor.Controle;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Aluno on 10/08/2018.
  */
 
-public class Discente extends Usuario {
+public class Discente extends Usuario implements Serializable{
     private boolean ativo;
 
     private String turma;
@@ -19,6 +20,8 @@ public class Discente extends Usuario {
 
     private List<Codigo> codigos;
     public static Discente instance;
+
+    
     public static Discente getInstance() {
         if(instance == null) {
             instance = new Discente();

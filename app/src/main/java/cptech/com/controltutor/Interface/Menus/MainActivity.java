@@ -14,6 +14,7 @@ import java.util.concurrent.ExecutionException;
 
 import cptech.com.controltutor.Connect.DiscenteRestClient;
 import cptech.com.controltutor.Controle.Discente;
+import cptech.com.controltutor.Controle.SessionController;
 import cptech.com.controltutor.DAO.DiscenteDAO;
 import cptech.com.controltutor.PerfilAlunoActivity;
 import cptech.com.controltutor.R;
@@ -49,8 +50,12 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Deu erro", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(MainActivity.this, "Passou", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, PerfilAlunoActivity.class);
-                        startActivity(intent);
+                        SessionController session = new SessionController(getBaseContext());
+                        String situacao = session.insert(aux.getNome(),aux.getId(), aux.getUsuario(),aux.getTipo());
+                        if(situacao.equals("Salvo")){
+                            Intent intent = new Intent(MainActivity.this, PerfilAlunoActivity.class);
+                            startActivity(intent);
+                        }
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -72,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Discente doInBackground(String...strings) {
             discenteRestClient = new DiscenteRestClient();
-
             Log.wtf("user e senha", "user: "+strings[0]+" senha: "+strings[1]);
             return discenteRestClient.loginDiscente(strings[0], strings[1]);
         }

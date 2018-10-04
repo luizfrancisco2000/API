@@ -17,13 +17,11 @@ import cptech.com.controltutor.Controle.Discente;
 public class DiscenteRestClient {
     //http://10.100.37.192:8000
     //http://10.100.45.241:8000
-    private final String BASE_URL = "http://10.100.45.241:8000/discente/";
-    private RestTemplate restTemplate;
+    //http://10.100.38.121:8000
+    private final String BASE_URL = "http://10.100.38.121:8000/api/discente/";
+    private RestTemplate restTemplate = new RestTemplate();
     private String url;
 
-    public DiscenteRestClient() {
-        restTemplate = new RestTemplate();
-    }
 
     public boolean insertDiscente(Discente discente) {
         url = BASE_URL + "cadastrar";
@@ -60,10 +58,10 @@ public class DiscenteRestClient {
     public Discente loginDiscente(String user, String senha){
 
         Log.d("user e senha", "user: "+user+" senha: "+senha);
-        url = BASE_URL + "executar/"+user+"/"+senha;
+        url = BASE_URL + "executar_login/"+user+"/"+senha;
         try{
             Discente discente = Discente.getInstance();
-            restTemplate.exchange(url,HttpMethod.GET,null, new ParameterizedTypeReference<Discente>() {}).getBody();
+            discente = restTemplate.exchange(url,HttpMethod.GET,null, new ParameterizedTypeReference<Discente>() {}).getBody();
            /* restTemplate.exchange(url, HttpMethod.GET, null,
                     new ParameterizedTypeReference<Discente>() {}).getBody();*/
             return discente;
