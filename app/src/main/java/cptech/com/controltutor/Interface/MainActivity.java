@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutionException;
 import cptech.com.controltutor.Connect.DiscenteRestClient;
 import cptech.com.controltutor.Connect.UserRestClient;
 import cptech.com.controltutor.Controle.Discente;
-import cptech.com.controltutor.Controle.SessionController;
+import cptech.com.controltutor.Controle.API.SessionController;
 import cptech.com.controltutor.Interface.Discente.CadastroDiscente;
 import cptech.com.controltutor.Interface.Discente.PerfilAlunoActivity;
 import cptech.com.controltutor.R;

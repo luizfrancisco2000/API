@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import cptech.com.controltutor.Controle.SessionController;
+import cptech.com.controltutor.Controle.API.SessionController;
 import cptech.com.controltutor.Interface.MainActivity;
 import cptech.com.controltutor.R;
 
