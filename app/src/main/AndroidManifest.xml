@@ -20,7 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Interface.Discente.CadastroDiscente" />
-        <activity android:name=".Interface.Discente.PerfilAlunoActivity"></activity>
+        <activity android:name=".Interface.Discente.PerfilAlunoActivity" />
+        <activity android:name=".Interface.Discente.MateriasTutor" />
+        <activity android:name=".Interface.Discente.ListaProfessor" />
+        <activity android:name=".Interface.Discente.GaleriaCodigos"></activity>
     </application>
 
 </manifest>
