@@ -6,7 +6,7 @@
 package com.cptech.api.APIMinverva.Controller;
 
 import com.cptech.api.APIMinverva.Exception.ResourceNotFoundException;
-import com.cptech.api.APIMinverva.Models.Discente;
+import com.cptech.api.APIMinverva.Models.*;
 import com.cptech.api.APIMinverva.Repository.DiscenteRepository;
 import java.util.Iterator;
 import java.util.List;
@@ -25,18 +25,18 @@ import org.springframework.web.bind.annotation.*;
 public class DiscenteController {
 
     @Autowired
-    DiscenteRepository discenterepositorio;
+    DiscenteRepository discenteRepositorio;
 
     //Pega Todos os Discentes
     @RequestMapping(method = RequestMethod.GET, path = "/discente")
     public ResponseEntity<?> getAllDiscente() {
-        return new ResponseEntity<>(discenterepositorio.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(discenteRepositorio.findAll(), HttpStatus.OK);
     }
 
     //Cria um discente.
     @RequestMapping(method = RequestMethod.POST, path = "/discente/cadastrar")
-    public ResponseEntity<?> insertProfessor(@Valid @RequestBody Discente discente) {
-        return new ResponseEntity<>(discenterepositorio.save(discente), HttpStatus.OK);
+    public ResponseEntity<?> insertDiscente(@Valid @RequestBody Discente discente) {
+        return new ResponseEntity<>(discenteRepositorio.save(discente), HttpStatus.OK);
     }
 
     //Login de um discente
@@ -44,7 +44,7 @@ public class DiscenteController {
     public ResponseEntity<?> login(@PathVariable("user") String user, @PathVariable("senha") String senha) {
         Discente discente;
         discente = Discente.getInstance();
-        discente = discenterepositorio.getByUsuario(user);
+        discente = discenteRepositorio.getByUsuario(user);
         if (discente != null) {
             if (discente.getSenha().equals(senha)) {
                 if (discente.getTipo() == 'A') {
@@ -54,30 +54,39 @@ public class DiscenteController {
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
-    
+
     //Deleta um discente
-    @RequestMapping(method = RequestMethod.PUT, path="/discente/apagar/{id}")
-    public ResponseEntity<?> deleteDiscente(@PathVariable("id") Long discenteID){
-        discenterepositorio.deleteById(discenteID);
+    @RequestMapping(method = RequestMethod.PUT, path = "/discente/apagar/{id}")
+    public ResponseEntity<?> deleteDiscente(@PathVariable("id") Long discenteID) {
+        discenteRepositorio.deleteById(discenteID);
         return new ResponseEntity<>("Apagado com Sucesso!", HttpStatus.OK);
     }
     
-    //Faz Atualização de um Discente
-//    @RequestMapping(method = RequestMethod.PUT, path = "/aluno/{id}")
-//    public ResponseEntity<?> updateAluno(@PathVariable("id") Long aluno_id,
-//            @Valid @RequestBody Aluno aluno_details) {
-//
-//        Aluno aluno = alunoRepository.findById(aluno_id)
-//                .orElseThrow(() -> new ResourceNotFoundException("Aluno", "aluno", aluno_id));
-//
-//        aluno.setNome(aluno_details.getNome());
-//        aluno.setObs(aluno_details.getObs());
-//        aluno.setEmail(aluno_details.getEmail());
-//
-//        //TALVEZ UM SET PARA AS NOTAS AQUI
-//        //VOU VER DEPOIS, TÁ?
-//        //NÃO ESQUECE
-//        return new ResponseEntity<>(alunoRepository.save(aluno), HttpStatus.OK);
-//}
     
+    //atualiza discente
+    @RequestMapping(method = RequestMethod.PUT, path = "/discente/atualizar")
+    public ResponseEntity<?> updateAluno(@Valid @RequestBody Discente discente) {
+        Discente discenteAux = discenteRepositorio.findById(discente.getId()).get();
+        discenteAux.setAtivo(discente.isAtivo());
+        discenteAux.setCodigos(discente.getCodigos());
+        discenteAux.setNome(discente.getNome());
+        discenteAux.setNotas(discente.getNotas());
+        discenteAux.setProfessor(discente.getProfessor());
+        discenteAux.setSenha(discente.getSenha());
+        discenteAux.setTurma(discente.getTurma());
+        discenteAux.setTutor(discente.getTutor());
+        discenteAux.setUsuario(discente.getUsuario());
+        return new ResponseEntity<>(discenteRepositorio.save(discenteAux), HttpStatus.OK);
+    }
+
+    //Procura Todos os Discentes de uma turma
+        @RequestMapping(method = RequestMethod.GET, path = "/discente/ProcuraTurma/{turma}")
+    public ResponseEntity<?> getAllDiscenteTurma(@PathVariable("turma") String turma) {
+        return new ResponseEntity<>(discenteRepositorio.getByTurma(turma), HttpStatus.OK);
+    }
+    
+    @RequestMapping(method = RequestMethod.PUT, path = "/discente/ProcuraTutor")
+    public ResponseEntity<?> getAllDiscenteTutor(@Valid @RequestBody Tutor tutor) {
+        return new ResponseEntity<>(discenteRepositorio.getByTutor(tutor), HttpStatus.OK);
+    }
 }

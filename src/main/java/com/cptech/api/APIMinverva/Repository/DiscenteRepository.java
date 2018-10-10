@@ -5,7 +5,8 @@
  */
 package com.cptech.api.APIMinverva.Repository;
 
-import com.cptech.api.APIMinverva.Models.Discente;
+import com.cptech.api.APIMinverva.Models.*;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -14,4 +15,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface DiscenteRepository extends JpaRepository<Discente, Long> {
     public Discente getByUsuario(String usuario);
+    public List<Discente> getByTurma(String Turma);
+    public List<Discente> getByTutor(Tutor tutor);
 }

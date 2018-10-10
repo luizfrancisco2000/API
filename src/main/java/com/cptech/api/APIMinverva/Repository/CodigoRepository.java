@@ -6,6 +6,8 @@
 package com.cptech.api.APIMinverva.Repository;
 
 import com.cptech.api.APIMinverva.Models.Codigo;
+import com.cptech.api.APIMinverva.Models.Discente;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -13,5 +15,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Aluno
  */
 public interface CodigoRepository extends JpaRepository<Codigo, Long>{
-    
+    public List<Codigo> findByDiscente(Discente discente);
 }

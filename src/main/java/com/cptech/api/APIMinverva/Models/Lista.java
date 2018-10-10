@@ -28,6 +28,9 @@ public class Lista implements Serializable {
     @JoinColumn(name = "professor", nullable = true)
     private Professor professor;
 
+    @ManyToOne
+    @JoinColumn(name = "tutor", nullable = true)
+    private Tutor tutor;
     public Lista(){
         
     }
