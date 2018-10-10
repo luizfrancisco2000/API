@@ -3,6 +3,8 @@ package cptech.com.controltutor.Interface.Discente;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import cptech.com.controltutor.R;
+
 public class GaleriaCodigos extends AppCompatActivity {
 
     @Override

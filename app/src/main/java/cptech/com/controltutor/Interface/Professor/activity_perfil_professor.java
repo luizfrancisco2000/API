@@ -1,15 +1,15 @@
-package cptech.com.controltutor.Interface.Discente;
+package cptech.com.controltutor.Interface.Professor;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import cptech.com.controltutor.R;
 
-public class MateriasTutor extends AppCompatActivity {
+public class activity_perfil_professor extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_materias_tutor);
+        setContentView(R.layout.activity_perfil_professor);
     }
 }
