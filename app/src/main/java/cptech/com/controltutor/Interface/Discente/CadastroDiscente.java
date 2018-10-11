@@ -4,8 +4,10 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import cptech.com.controltutor.Connect.DiscenteRestClient;
@@ -20,7 +22,7 @@ public class CadastroDiscente extends AppCompatActivity {
     private EditText campoNome;
     private EditText campoSenha;
     private EditText campoUsuario;
-    private EditText campoTurma;
+    private Spinner turmas;
     private Button buttonCad;
     private Button buttonBack;
 
@@ -28,13 +30,16 @@ public class CadastroDiscente extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro);
+        setContentView(R.layout.activity_cadastro_discente);
         campoNome = findViewById(R.id.nomeCadEditId);
         campoSenha = findViewById(R.id.senhaCadEditId);
         campoUsuario = findViewById(R.id.usuarioCadEditId);
-        campoTurma = findViewById(R.id.turmaCadEditId);
+        turmas = findViewById(R.id.spinnerTurma);
         buttonBack = findViewById(R.id.cancelarCadId);
         buttonCad = findViewById(R.id.salvarCadId);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(CadastroDiscente.this,R.array.Turmas,R.layout.padrao_spinner);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        turmas.setAdapter(adapter);
         discenteCad = new Discente();
         discenteCad.setTipo('A');
         buttonCad.setOnClickListener(new View.OnClickListener() {
@@ -44,10 +49,22 @@ public class CadastroDiscente extends AppCompatActivity {
                 salvarDiscente();
             }
         });
+
+        if(!campoUsuario.hasSelection()){
+            procurarUsuario(campoUsuario.getText().toString());
+        }
     }
+
+    private void procurarUsuario(String s) {
+        if(s.equals("luiz 123"))
+            Toast.makeText(this, "Usuario existe", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, "Usuario não existe", Toast.LENGTH_SHORT).show();
+    }
+
     public void parseToDiscente(){
         discenteCad.setNome(campoNome.getText().toString());
-        discenteCad.setTurma(campoTurma.getText().toString());
+        discenteCad.setTurma(turmas.getSelectedItem().toString());
         discenteCad.setSenha(campoSenha.getText().toString());
         discenteCad.setUsuario(campoUsuario.getText().toString());
         discenteCad.setCodigos(null);

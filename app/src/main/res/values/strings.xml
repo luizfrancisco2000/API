@@ -4,4 +4,24 @@
     <string name="tela_professor">Perfil do Professor</string>
     <string name="tela_tutor">Perfil do Tutor</string>
     <string name="autoria">Desenvolvido por Coffee Power.</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string-array name="lp_assuntos">
+        <item>Variáveis e Expressões</item>
+        <item>Comandos Condicionais</item>
+        <item>Comandos de Repetição</item>
+        <item>Vetores e Matrizes</item>
+        <item>Strings</item>
+        <item>Structs</item>
+        <item>Funções</item>
+        <item>Recursão</item>
+        <item>Ponteiros</item>
+        <item>Alocação Dinâmica</item>
+        <item>Arquivos</item>
+    </string-array>
+    <string-array name="Turmas">
+        <item>INF11A</item>
+        <item>INF11B</item>
+    </string-array>
 </resources>
