@@ -33,6 +33,7 @@
         <activity android:name=".Interface.Discente.CadastroCodigo" />
         <activity android:name=".Interface.Menus.CadastroProfessor" />
         <activity android:name=".Interface.Menus.CadastroTutor" />
+        <activity android:name=".Interface.LoginLayout" />
         <activity android:name=".PerfilTutor"></activity>
     </application>
 
