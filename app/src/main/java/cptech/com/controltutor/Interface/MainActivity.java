@@ -85,4 +85,28 @@ public class MainActivity extends AppCompatActivity {
         alert = alerta.create();
         alert.show();
     }
+ private class HttpVerificaConta extends AsyncTask<Long, Void, Void> {
+        @Override
+        protected Void doInBackground(Long... longs) {
+            userRestClient = new UserRestClient();
+            Log.w("id", String.valueOf(longs[0]));
+            long id = longs[0];
+            int resp = userRestClient.procurarDados(id);
+            if(resp==1){
+                Intent intent = new Intent(MainActivity.this, PerfilAlunoActivity.class);
+                startActivity(intent);
+            }else if(resp==2){
+                Intent intent = new Intent(MainActivity.this, PerfilAlunoActivity.class);
+                //startActivity(intent);
+            }else if(resp==3){
+                Intent intent = new Intent(MainActivity.this, PerfilAlunoActivity.class);
+                // startActivity(intent);
+            }else{
+                Log.wtf("Deu erro","Erro");
+            }
+
+            return null;
+        }
+    }
+
 }
