@@ -21,6 +21,9 @@ public class Codigo implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+   
+    @Column(name="assunto", nullable=false, length=255)
+    private String assunto;
     
     @Column(name="enunciado", nullable=false, length=255)
     private String enunciado;
@@ -37,6 +40,14 @@ public class Codigo implements Serializable {
     private Discente discente;
 
     public Codigo() {
+    }
+
+    public String getAssunto() {
+        return assunto;
+    }
+
+    public void setAssunto(String assunto) {
+        this.assunto = assunto;
     }
     
     public Long getId() {

@@ -53,7 +53,7 @@ public class CodigoController {
     }
     
     //Procura Codigos
-    @RequestMapping(method = RequestMethod.PUT, path="/codigo/ProcuraAluno")
+    @RequestMapping(method = RequestMethod.GET, path="/codigo/ProcuraAluno")
     public ResponseEntity<?> findCodigoByAluno(@Valid @RequestBody Discente discente){
         return new ResponseEntity<>(codigoRepositorio.findByDiscente(discente), HttpStatus.OK);
     }
