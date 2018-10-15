@@ -19,17 +19,17 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Matrícula"
+            android:text="Número ID"
             android:textAppearance="@style/AppTheme.letraembranco" />
 
         <EditText
             android:inputType="number"
             android:backgroundTint="@color/colorCharacter"
             android:textColor="@color/colorCharacter"
-            android:id="@+id/usuarioCadEditId"
+            android:id="@+id/usuarioPCadEditId"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="200012340123"
+            android:hint="0123"
             android:textAppearance="@style/AppTheme.letraembranco" />
 
         <TextView
@@ -42,32 +42,11 @@
             android:backgroundTint="@color/colorCharacter"
             android:textColor="@color/colorCharacter"
             android:hint="Username"
-            android:id="@+id/nomeCadEditId"
+            android:id="@+id/nomePCadEditId"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Turma:"
-                android:textAppearance="@style/AppTheme.letraembranco" />
-
-            <Spinner
-                android:backgroundTint="@color/colorCharacter"
-                android:id="@+id/spinnerTurma"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-            </Spinner>
-
-        </LinearLayout>
 
         <TextView
 
@@ -79,7 +58,7 @@
         <EditText
             android:textColor="@color/colorCharacter"
             android:backgroundTint="@color/colorCharacter"
-            android:id="@+id/senhaCadEditId"
+            android:id="@+id/senhaPCadEditId"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Senha"

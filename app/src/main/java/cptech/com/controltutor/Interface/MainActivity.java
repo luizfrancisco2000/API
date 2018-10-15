@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.login_layout);
         sessionController = new SessionController(getBaseContext());
 
+
         Long id = sessionController.findAll();
         if(id!=-1){
             try {

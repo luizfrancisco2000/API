@@ -4,49 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5fffa"
+    android:background="@color/colorBackground"
     tools:context="cptech.com.controltutor.Interface.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@android:dimen/app_icon_size"
         android:orientation="vertical">
 
         <TextView
+            android:layout_marginTop="@android:dimen/app_icon_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
+            android:textSize="16dp"
+            android:textColor="@color/colorCharacter"
             android:text="Escolha o tipo de conta com que deseja entrar." />
 
-        <FrameLayout
+        <LinearLayout
+            android:gravity="center"
+            android:layout_marginTop="@android:dimen/notification_large_icon_height"
+            android:layout_gravity="center_horizontal|center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_marginEnd="5dp">
+            android:orientation="vertical"
+            android:background="@color/colorCharacter">
 
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left" />
-
-            <ViewSwitcher
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-            </ViewSwitcher>
+                <TextView
+                    android:id="@+id/title_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tela_aluno"
+                    android:textColor="#000000"
+                    android:textSize="20dp"/>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
             <ImageButton
+                android:id="@+id/button_nextUser"
+                android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right" />
+                android:src="@android:drawable/ic_media_previous"
+                android:tint="@color/colorBackground"
+                android:backgroundTint="#c06014"/>
+            <ImageView
+                android:id="@+id/image_menu"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_width="@android:dimen/thumbnail_height"
+                android:layout_height="@android:dimen/thumbnail_height"
+                android:src="@drawable/aluno"/>
+            <ImageButton
+                android:id="@+id/button_prevUser"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_media_next"
+                android:tint="@color/colorBackground"
+                android:backgroundTint="#c06014"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@android:dimen/app_icon_size"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/acessar_user"
+                    android:backgroundTint="#00b8a9"
+                    android:textColor="@color/colorCharacter"
+                    android:text="Acesso"
+                    android:textSize="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/cadastrar_user"
+                    android:backgroundTint="#ee826c"
+                    android:textColor="@color/colorCharacter"
+                    android:text="Cadastro"
+                    android:textSize="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
 
-        </FrameLayout>
 
-    </LinearLayout>
+        </LinearLayout>
 
+            </LinearLayout>
 
 
 </RelativeLayout>

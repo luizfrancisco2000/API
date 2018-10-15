@@ -25,7 +25,10 @@
         <activity android:name=".Interface.Discente.ListaProfessor" />
         <activity android:name=".Interface.Discente.GaleriaCodigos" />
         <activity android:name=".Interface.Professor.activity_perfil_professor" />
-        <activity android:name=".Interface.Discente.CadastroCodigo"></activity>
+        <activity android:name=".Interface.Discente.CadastroCodigo" />
+        <activity android:name=".Interface.Menus.CadastroProfessor" />
+        <activity android:name=".Interface.Menus.CadastroTutor" />
+        <activity android:name=".PerfilTutor"></activity>
     </application>
 
 </manifest>
