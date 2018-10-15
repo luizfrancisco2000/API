@@ -50,17 +50,17 @@ public class CadastroDiscente extends AppCompatActivity {
             }
         });
 
-        if(!campoUsuario.hasSelection()){
-            procurarUsuario(campoUsuario.getText().toString());
-        }
+        campoUsuario.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) { //perdeu o foco
+
+                }
+            }
+        });
     }
 
-    private void procurarUsuario(String s) {
-        if(s.equals("luiz 123"))
-            Toast.makeText(this, "Usuario existe", Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(this, "Usuario não existe", Toast.LENGTH_SHORT).show();
-    }
+
 
     public void parseToDiscente(){
         discenteCad.setNome(campoNome.getText().toString());
@@ -94,6 +94,20 @@ public class CadastroDiscente extends AppCompatActivity {
         protected Boolean doInBackground(Discente...discentes) {
             discenteRestClient = new DiscenteRestClient();
             return discenteRestClient.insertDiscente(discentes[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+        }
+    }
+    private class HttpProcurarDiscente extends AsyncTask<String, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String...discentes) {
+            discenteRestClient = new DiscenteRestClient();
+            discenteRestClient.listar();
+            return false;
         }
 
         @Override
