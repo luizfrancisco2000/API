@@ -106,7 +106,7 @@ public class CadastroDiscente extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String...discentes) {
             discenteRestClient = new DiscenteRestClient();
-            discenteRestClient.listar();
+            discenteRestClient.listar(discentes[0]);
             return false;
         }
 

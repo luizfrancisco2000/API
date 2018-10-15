@@ -24,6 +24,7 @@
 
         <LinearLayout
             android:gravity="center"
+            android:id="@+id/linearLayout1"
             android:layout_marginTop="@android:dimen/notification_large_icon_height"
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_width="match_parent"
@@ -49,21 +50,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
             <ImageButton
-                android:id="@+id/button_nextUser"
+                android:id="@+id/button_prevUser"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/ic_media_previous"
                 android:tint="@color/colorBackground"
                 android:backgroundTint="#c06014"/>
-            <ImageView
-                android:id="@+id/image_menu"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_width="@android:dimen/thumbnail_height"
-                android:layout_height="@android:dimen/thumbnail_height"
-                android:src="@drawable/aluno"/>
+
+                <ImageView
+                    android:id="@+id/image_menu"
+                    android:layout_width="@android:dimen/thumbnail_height"
+                    android:layout_height="@android:dimen/thumbnail_height"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:background="@color/colorCharacter"
+                    android:src="@drawable/aluno" />
             <ImageButton
-                android:id="@+id/button_prevUser"
+                android:id="@+id/button_nextUser"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -64,15 +64,15 @@ public class LoginLayout extends AppCompatActivity {
                 try {
                     aux = new HttpLogin().execute(user, senha).get();
                     if(aux==null){
-                        Toast.makeText(MainActivity.this, "Deu erro", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginLayout.this, "Deu erro", Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(MainActivity.this, "Passou", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginLayout.this, "Passou", Toast.LENGTH_SHORT).show();
                         String mensagem = sessionController.insert(aux.getNome(),aux.getId(),aux.getUsuario(),aux.getTipo());
                         if(mensagem.equals("Salvo")){
-                            Intent intent = new Intent(MainActivity.this, PerfilAlunoActivity.class);
+                            Intent intent = new Intent(LoginLayout.this, PerfilAlunoActivity.class);
                             startActivity(intent);
                         }else{
-                            Toast.makeText(MainActivity.this, "Erro", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginLayout.this, "Erro", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } catch (InterruptedException e) {
@@ -85,7 +85,7 @@ public class LoginLayout extends AppCompatActivity {
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CadastroDiscente.class);
+                Intent intent = new Intent(LoginLayout.this, CadastroDiscente.class);
                 startActivity(intent);
             }
         });
@@ -113,13 +113,13 @@ public class LoginLayout extends AppCompatActivity {
             long id = longs[0];
             int resp = userRestClient.procurarDados(id);
             if(resp==1){
-                Intent intent = new Intent(MainActivity.this, PerfilAlunoActivity.class);
+                Intent intent = new Intent(LoginLayout.this, PerfilAlunoActivity.class);
                 startActivity(intent);
             }else if(resp==2){
-                Intent intent = new Intent(MainActivity.this, PerfilAlunoActivity.class);
+                Intent intent = new Intent(LoginLayout.this, PerfilAlunoActivity.class);
                 //startActivity(intent);
             }else if(resp==3){
-                Intent intent = new Intent(MainActivity.this, PerfilAlunoActivity.class);
+                Intent intent = new Intent(LoginLayout.this, PerfilAlunoActivity.class);
                 // startActivity(intent);
             }else{
                 Log.wtf("Deu erro","Erro");
