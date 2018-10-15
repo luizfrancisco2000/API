@@ -54,12 +54,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
               Intent intent = new Intent(MainActivity.class, LoginLayout.class);
               startActivity(intent);
+            }
             });
               entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
               Intent intent = new Intent(MainActivity.class, CadastroDiscente.class);
               startActivity(intent);
+            }
             });
     }
 
