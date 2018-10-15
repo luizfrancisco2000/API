@@ -8,12 +8,21 @@ import java.io.Serializable;
 
 public class Codigo implements Serializable{
     private Long id;
+    private String assunto;
     private String enunciado;
     private byte[] resolucao;
     private int avaliacao;
     private Discente discente;
 
     public Codigo() {
+    }
+
+    public String getAssunto() {
+        return assunto;
+    }
+
+    public void setAssunto(String assunto) {
+        this.assunto = assunto;
     }
 
     public Discente getDiscente() {

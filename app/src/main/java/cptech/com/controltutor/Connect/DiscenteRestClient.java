@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
+import java.util.List;
 
 import cptech.com.controltutor.Controle.Discente;
 
@@ -83,6 +84,31 @@ public class DiscenteRestClient {
             return null;
         }
         return discente;
+    }
+
+    public boolean listar(String user) {
+        url = BASE_URL+"procuraUsuario/"+user;
+        Discente discente = Discente.getInstance();
+        try{
+
+            ResponseEntity<Discente> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<Discente>() {});
+            discente = response.getBody();
+            if(discente!=null){
+                return true;
+            }
+            else{
+                return false;
+            }
+            /*discente = restTemplate.exchange(url,HttpMethod.GET,null,
+                    new ParameterizedTypeReference<Discente>(){}).getBody();*/
+           /* restTemplate.exchange(url, HttpMethod.GET, null,
+                    new ParameterizedTypeReference<Discente>() {}).getBody();*/
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
 /*    public boolean procurarId(Long id) {

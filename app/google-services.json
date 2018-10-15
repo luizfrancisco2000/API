@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "896548444115",
+    "firebase_url": "https://minervaoffice-19013.firebaseio.com",
+    "project_id": "minervaoffice-19013",
+    "storage_bucket": "minervaoffice-19013.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896548444115:android:476c0e6cb07839fb",
+        "android_client_info": {
+          "package_name": "cptech.com.controltutor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896548444115-moh1tgvpq8v2moo03j1drbcj20i45jj4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-WkAN2TfF8F6oepLRnT8kBPnAtPg6bLc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
