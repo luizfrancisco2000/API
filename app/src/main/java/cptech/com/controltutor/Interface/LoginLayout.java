@@ -22,7 +22,7 @@ import cptech.com.controltutor.Interface.Discente.CadastroDiscente;
 import cptech.com.controltutor.Interface.Discente.PerfilAlunoActivity;
 import cptech.com.controltutor.R;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginLayout extends AppCompatActivity {
     private DiscenteRestClient discenteRestClient;
     private UserRestClient userRestClient;
     private EditText loginEdit;
