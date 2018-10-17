@@ -33,11 +33,6 @@ public class DiscenteController {
         return new ResponseEntity<>(discenteRepositorio.findAll(), HttpStatus.OK);
     }
 
-        //Pega Todos os Discentes
-    @RequestMapping(method = RequestMethod.GET, path = "/discente/procuraUsuario/{user}")
-    public ResponseEntity<?> getDiscente(@PathVariable("user") String usuario) {
-        return new ResponseEntity<>(discenteRepositorio.getByUsuario(usuario), HttpStatus.OK);
-    }
     //Cria um discente.
     @RequestMapping(method = RequestMethod.POST, path = "/discente/cadastrar")
     public ResponseEntity<?> insertDiscente(@Valid @RequestBody Discente discente) {

@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author Aluno
  */
+
+@RestController
+@RequestMapping("/api")
 public class TutorController {
     @Autowired
     TutorRepository tutorRepositorio;
@@ -42,7 +46,21 @@ public class TutorController {
         tutorRepositorio.deleteById(tutorID);
         return new ResponseEntity<>("Apagado com Sucesso!", HttpStatus.OK);
     }
-    
+        //Login de um Professor
+    @RequestMapping(method = RequestMethod.GET, path = "/tutor/executar_login/{user}/{senha}")
+    public ResponseEntity<?> login(@PathVariable("user") String user, @PathVariable("senha") String senha) {
+        Tutor tutor;
+        tutor = Tutor.getInstance();
+        tutor = tutorRepositorio.getByUsuario(user);
+        if (tutor != null) {
+            if (tutor.getSenha().equals(senha)) {
+                if (tutor.getTipo() == 'T') {
+                    return new ResponseEntity<>(tutor, HttpStatus.OK);
+                }
+            }
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
     
     //atualiza tutor
     @RequestMapping(method = RequestMethod.PUT, path = "/tutor/atualizar")

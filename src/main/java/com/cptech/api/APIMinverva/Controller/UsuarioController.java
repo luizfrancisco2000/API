@@ -5,7 +5,6 @@
  */
 package com.cptech.api.APIMinverva.Controller;
 
-import com.cptech.api.APIMinverva.Repository.DiscenteRepository;
 import com.cptech.api.APIMinverva.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +29,11 @@ public class UsuarioController {
     @RequestMapping(method = RequestMethod.GET, path = "/usuario/procurar/{id}")
     public ResponseEntity<?> getAllUsuario(@PathVariable("id") long id){
         return new ResponseEntity<>(userRepository.findById(id),HttpStatus.OK);
+    }
+    //Pega Todos os Discentes
+    @RequestMapping(method = RequestMethod.GET, path = "/usuario/procuraUsuario/{user}")
+    public ResponseEntity<?> getDiscente(@PathVariable("user") String usuario) {
+        return new ResponseEntity<>(userRepository.getByUsuario(usuario), HttpStatus.OK);
     }
     
 }

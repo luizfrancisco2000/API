@@ -15,12 +15,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author Aluno
  */
+
+@RestController
+@RequestMapping("/api")
 public class ProfessorController {
+
     @Autowired
     ProfessorRepository professorRepositorio;
 
@@ -42,8 +47,23 @@ public class ProfessorController {
         professorRepositorio.deleteById(professorID);
         return new ResponseEntity<>("Apagado com Sucesso!", HttpStatus.OK);
     }
-    
-    
+
+    //Login de um Professor
+    @RequestMapping(method = RequestMethod.GET, path = "/professor/executar_login/{user}/{senha}")
+    public ResponseEntity<?> login(@PathVariable("user") String user, @PathVariable("senha") String senha) {
+        Professor professor;
+        professor = Professor.getInstance();
+        professor = professorRepositorio.getByUsuario(user);
+        if (professor != null) {
+            if (professor.getSenha().equals(senha)) {
+                if (professor.getTipo() == 'P') {
+                    return new ResponseEntity<>(professor, HttpStatus.OK);
+                }
+            }
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
     //atualiza professor
     @RequestMapping(method = RequestMethod.PUT, path = "/professor/atualizar")
     public ResponseEntity<?> updateProfessor(@Valid @RequestBody Professor professor) {
@@ -60,14 +80,13 @@ public class ProfessorController {
         professorAux.setUsuario(professor.getUsuario());
         return new ResponseEntity<>(professorRepositorio.save(professorAux), HttpStatus.OK);
     }
-    
+
 //    //Procura Professors por professor
 //    @RequestMapping(method = RequestMethod.PUT, path="/professor/procuraComProfessor")
 //    public ResponseEntity<?> findProfessorByProfessor(@Valid @RequestBody Professor professor){
 //        return new ResponseEntity<>(professorRepositorio.findByProfessor(professor), HttpStatus.OK);
 //    }
-    
-        //Procura Professores por professor
+    //Procura Professores por professor
 //    @RequestMapping(method = RequestMethod.PUT, path="/professor/procuraComTutor")
 //    public ResponseEntity<?> findProfessorByProfessor(@Valid @RequestBody Tutor tutor){
 //        return new ResponseEntity<>(professorRepositorio.findByTutor(tutor), HttpStatus.OK);

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author Aluno
  */
+@RestController
+@RequestMapping("/api")
 public class CodigoController {
     @Autowired
     CodigoRepository codigoRepositorio;

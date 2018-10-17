@@ -15,22 +15,32 @@ import static javax.persistence.CascadeType.ALL;
  * @author Aluno
  */
 @Entity
-@Table(name="professor")
+@Table(name = "professor")
 public class Professor extends Usuario implements Serializable {
-    
+
     @OneToMany(cascade = ALL, mappedBy = "professor")
     private List<Tutor> tutores;
-    
+
     @OneToMany(cascade = ALL, mappedBy = "professor")
     private List<Discente> discentes;
-    
+
     @OneToMany(cascade = ALL, mappedBy = "professor")
     private List<Lista> listas;
 
-    public Professor(){
-        
-    }
+    private static Professor instance;
     
+    
+    public Professor() {
+
+    }
+
+    public static Professor getInstance() {
+        if (instance == null) {
+            instance = new Professor();
+        }
+        return instance;
+    }
+
     public List<Tutor> getTutores() {
         return tutores;
     }
@@ -54,6 +64,5 @@ public class Professor extends Usuario implements Serializable {
     public void setListas(List<Lista> listas) {
         this.listas = listas;
     }
-    
-    
+
 }

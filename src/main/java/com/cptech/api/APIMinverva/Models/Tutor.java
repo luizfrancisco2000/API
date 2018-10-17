@@ -28,7 +28,24 @@ public class Tutor extends Usuario implements Serializable {
     @OneToMany(cascade = ALL, mappedBy = "tutor")
     private List<Lista> listas;
 
+    private static Tutor instance;
+
     public Tutor() {
+    }
+
+    public static Tutor getInstance() {
+        if (instance == null) {
+            instance = new Tutor();
+        }
+        return instance;
+    }
+
+    public List<Lista> getListas() {
+        return listas;
+    }
+
+    public void setListas(List<Lista> listas) {
+        this.listas = listas;
     }
 
     public List<Discente> getDiscentes() {

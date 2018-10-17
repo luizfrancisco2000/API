@@ -13,5 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Aluno
  */
 public interface ProfessorRepository extends JpaRepository<Professor, Long> {
-    
+    public Professor getByUsuario(String usuario);
 }
