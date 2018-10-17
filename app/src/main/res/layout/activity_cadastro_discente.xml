@@ -19,17 +19,16 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Matrícula"
+            android:text="Usuario"
             android:textAppearance="@style/AppTheme.letraembranco" />
 
         <EditText
-            android:inputType="number"
             android:backgroundTint="@color/colorCharacter"
             android:textColor="@color/colorCharacter"
             android:id="@+id/usuarioCadEditId"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="200012340123"
+            android:hint="Username"
             android:textAppearance="@style/AppTheme.letraembranco" />
 
         <TextView
@@ -41,7 +40,7 @@
             android:inputType="textPersonName"
             android:backgroundTint="@color/colorCharacter"
             android:textColor="@color/colorCharacter"
-            android:hint="Username"
+            android:hint="Nome"
             android:id="@+id/nomeCadEditId"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />

@@ -10,7 +10,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.concurrent.ExecutionException;
+
 import cptech.com.controltutor.Connect.DiscenteRestClient;
+import cptech.com.controltutor.Connect.UserRestClient;
 import cptech.com.controltutor.Controle.Discente;
 import cptech.com.controltutor.R;
 
@@ -54,7 +57,17 @@ public class CadastroDiscente extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) { //perdeu o foco
-
+                    try {
+                        if(new HttpProcurarUserDiscente().execute(campoUsuario.getText().toString()).get()){
+                            Toast.makeText(CadastroDiscente.this, "Certo", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(CadastroDiscente.this, "Usuario já cadastrado... utilize outro", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -101,13 +114,12 @@ public class CadastroDiscente extends AppCompatActivity {
             super.onPostExecute(result);
         }
     }
-    private class HttpProcurarDiscente extends AsyncTask<String, Void, Boolean> {
+    private class HttpProcurarUserDiscente extends AsyncTask<String, Void, Boolean> {
 
         @Override
-        protected Boolean doInBackground(String...discentes) {
-            discenteRestClient = new DiscenteRestClient();
-            discenteRestClient.listar(discentes[0]);
-            return false;
+        protected Boolean doInBackground(String...strings) {
+            UserRestClient userRestClient = new UserRestClient();
+            return userRestClient.listar(strings[0]);
         }
 
         @Override

@@ -5,69 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".Interface.Discente.CadastroDiscente">
+    tools:context=".Interface.Tutor.CadastroTutor">
+
     <LinearLayout
-        android:paddingLeft="@android:dimen/app_icon_size"
-        android:paddingRight="@android:dimen/app_icon_size"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:orientation="vertical"
-        >
+        android:paddingLeft="@android:dimen/app_icon_size"
+        android:paddingRight="@android:dimen/app_icon_size">
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Matrícula"
+            android:text="Usuário"
             android:textAppearance="@style/AppTheme.letraembranco" />
 
         <EditText
-            android:inputType="number"
-            android:backgroundTint="@color/colorCharacter"
-            android:textColor="@color/colorCharacter"
-            android:id="@+id/usuarioCadEditId"
+            android:id="@+id/usuarioTCadEditId"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="200012340123"
-            android:textAppearance="@style/AppTheme.letraembranco" />
+            android:backgroundTint="@color/colorCharacter"
+            android:hint="Username"
+            android:textAppearance="@style/AppTheme.letraembranco"
+            android:textColor="@color/colorCharacter" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Nome:"
             android:textAppearance="@style/AppTheme.letraembranco" />
+
         <EditText
-            android:inputType="textPersonName"
-            android:backgroundTint="@color/colorCharacter"
-            android:textColor="@color/colorCharacter"
-            android:hint="Username"
-            android:id="@+id/nomeCadEditId"
+            android:id="@+id/nomeTCadEditId"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:backgroundTint="@color/colorCharacter"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorCharacter" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Turma:"
-                android:textAppearance="@style/AppTheme.letraembranco" />
 
-            <Spinner
-                android:backgroundTint="@color/colorCharacter"
-                android:id="@+id/spinnerTurma"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-            </Spinner>
-
-        </LinearLayout>
 
         <TextView
 
@@ -77,34 +56,35 @@
             android:textAppearance="@style/AppTheme.letraembranco" />
 
         <EditText
-            android:textColor="@color/colorCharacter"
-            android:backgroundTint="@color/colorCharacter"
-            android:id="@+id/senhaCadEditId"
+            android:id="@+id/senhaTCadEditId"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorCharacter"
             android:hint="Senha"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/colorCharacter" />
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center"
-            >
+            android:orientation="horizontal">
+
             <Button
-                android:text="Cancelar"
-                android:backgroundTint="#ee826c"
-                android:textColor="@color/colorCharacter"
+                android:id="@+id/cancelarTCadId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cancelarCadId"
-                />
+                android:backgroundTint="#ee826c"
+                android:text="Cancelar"
+                android:textColor="@color/colorCharacter" />
+
             <Button
+                android:id="@+id/salvarTCadId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:backgroundTint="#00b8a9"
                 android:text="Continuar"
-                android:textColor="@color/colorCharacter"
-                android:id="@+id/salvarCadId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textColor="@color/colorCharacter" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

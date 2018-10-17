@@ -57,6 +57,7 @@ public class CadastroCodigo extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_codigo);
         enunciadoText = findViewById(R.id.enunciadoCadID);
         codigoText = findViewById(R.id.codigoCadID);
+        assuntos = findViewById(R.id.assuntos);
         foto = findViewById(R.id.fotoCadID);
         verFoto = findViewById(R.id.fotoVisID);
         finalizar = findViewById(R.id.salveBottonID);

@@ -20,7 +20,7 @@ public class DiscenteRestClient {
     //http://10.100.37.192:8000
     //http://10.100.38.128:8000
     //http://10.100.45.241:8000
-    private final String BASE_URL = "http://10.100.38.128:8000/api/discente/";
+    private final String BASE_URL = "http://10.100.45.241:8000/api/discente/";
     private RestTemplate restTemplate;
     private String url;
 
@@ -85,31 +85,6 @@ public class DiscenteRestClient {
             return null;
         }
         return discente;
-    }
-
-    public boolean listar(String user) {
-        url = BASE_URL+"procuraUsuario/"+user;
-        Discente discente = Discente.getInstance();
-        try{
-
-            ResponseEntity<Discente> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<Discente>() {});
-            discente = response.getBody();
-            if(discente!=null){
-                return true;
-            }
-            else{
-                return false;
-            }
-            /*discente = restTemplate.exchange(url,HttpMethod.GET,null,
-                    new ParameterizedTypeReference<Discente>(){}).getBody();*/
-           /* restTemplate.exchange(url, HttpMethod.GET, null,
-                    new ParameterizedTypeReference<Discente>() {}).getBody();*/
-
-        }catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
-
     }
 
 /*    public boolean procurarId(Long id) {

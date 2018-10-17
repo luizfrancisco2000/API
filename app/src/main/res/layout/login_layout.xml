@@ -1,57 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_x="166dp"
+        android:backgroundTint="@color/colorCharacter"
+        android:layout_y="249dp"
+        android:id="@+id/progressLogin"
+        android:visibility="invisible"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         >
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/TextId"
-            android:text="Usuario"
-            />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/loginDiscente"
-            android:hint="Entre com o login...."
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/TextSenhaId"
-            android:text="Senha"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/senhaDiscente"
-            android:hint="Entre com a Senha...."
-            />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
             >
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cada"
-                android:id="@+id/bottonCad"
-                android:textAllCaps="false"
+                android:id="@+id/boas_vindas"
+                android:text="Bem vindo, "
+                android:textColor="@color/colorCharacter"
                 />
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Logar"
-                android:textAllCaps="false"
-                android:id="@+id/bottonConfirmar"
+                android:id="@+id/TextId"
+                android:text="Usuario"
+                android:textColor="@color/colorCharacter"
                 />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/login"
+                android:hint="Entre com o login...."
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/TextSenhaId"
+                android:textColor="@color/colorCharacter"
+                android:text="Senha"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/senha"
+                android:inputType="textPassword"
+                android:hint="Entre com a Senha...."
+                />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <Button
+                    android:layout_width="wrap_content"
+                    android:backgroundTint="#ee826c"
+                    android:textColor="@color/colorCharacter"
+                    android:layout_height="wrap_content"
+                    android:text="Cancelar"
+                    android:textAllCaps="false"
+                    android:id="@+id/bottonCancelar"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:backgroundTint="#00b8a9"
+                    android:textColor="@color/colorCharacter"
+                    android:layout_height="wrap_content"
+                    android:text="Confirmar"
+                    android:textAllCaps="false"
+                    android:id="@+id/bottonConfirmar"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
-    </LinearLayout>
-
-</RelativeLayout>
-
+    </RelativeLayout>
+</AbsoluteLayout>

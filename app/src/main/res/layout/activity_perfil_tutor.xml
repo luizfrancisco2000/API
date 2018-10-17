@@ -29,19 +29,19 @@
             android:layout_marginBottom="60dp">
 
             <ImageView
-                android:id="@+id/imgProfessor"
+                android:id="@+id/imgTutor"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/professor" />
+                app:srcCompat="@drawable/tutor" />
 
             <TextView
-                android:id="@+id/txtProfessor"
+                android:id="@+id/txtTutor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:text="Perfil Professor"
+                android:text="Perfil Tutor"
                 android:textAppearance="@style/AppTheme.letraembranco"
                 android:textSize="24sp" />
 
@@ -70,16 +70,16 @@
                     android:id="@+id/listaProfessor"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    app:srcCompat="@drawable/materiais" />
+                    app:srcCompat="@drawable/lista" />
 
                 <TextView
-                    android:id="@+id/txtMaterial"
+                    android:id="@+id/txtLista"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textAlignment="center"
                     android:textSize="18dp"
-                    android:text="Gerenciar Materiais"
+                    android:text="Listas do Professor"
                     android:textAppearance="@style/AppTheme.letraembranco" />
             </LinearLayout>
 
@@ -92,20 +92,19 @@
 
                 <ImageView
                     android:layout_gravity="center"
-                    android:id="@+id/Relatorio"
+                    android:id="@+id/updateRelatorio"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
 
                     app:srcCompat="@drawable/relatorio" />
 
                 <TextView
-
                     android:id="@+id/txtRelatorio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textSize="18dp"
-                    android:text="Visualizar Relatórios"
+                    android:text="Atualização de Relatórios"
                     android:textAppearance="@style/AppTheme.letraembranco" />
             </LinearLayout>
 
@@ -128,7 +127,7 @@
                     android:id="@+id/galCodes"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    app:srcCompat="@drawable/alunos" />
+                    app:srcCompat="@drawable/galeria" />
 
                 <TextView
                     android:layout_gravity="center"
@@ -137,8 +136,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textSize="18dp"
-                    android:text="Alunos &amp; Tutores"
-
+                    android:text="Galeria de Códigos"
                     android:textAppearance="@style/AppTheme.letraembranco" />
             </LinearLayout>
 
@@ -155,7 +153,7 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
 
-                    app:srcCompat="@drawable/seguranca" />
+                    app:srcCompat="@drawable/materiais" />
 
                 <TextView
                     android:layout_gravity="center"
@@ -164,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textSize="18dp"
-                    android:text="Configurações de Segurança"
+                    android:text="Gerenciamento de Materiais"
                     android:textAppearance="@style/AppTheme.letraembranco" />
             </LinearLayout>
 

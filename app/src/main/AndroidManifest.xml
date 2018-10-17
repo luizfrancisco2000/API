@@ -29,11 +29,13 @@
         <activity android:name=".Interface.Discente.MateriasTutor" />
         <activity android:name=".Interface.Discente.ListaProfessor" />
         <activity android:name=".Interface.Discente.GaleriaCodigos" />
-        <activity android:name=".Interface.Professor.activity_perfil_professor" />
+        <activity android:name=".Interface.Professor.PerfilProfessor" />
         <activity android:name=".Interface.Discente.CadastroCodigo" />
         <activity android:name=".Interface.Professor.CadastroProfessor" />
         <activity android:name=".Interface.Tutor.CadastroTutor" />
-        <activity android:name=".Interface.Login.LoginLayout" />
+        <activity android:name=".Interface.Login.LoginLayoutAluno" />
+        <activity android:name=".Interface.Login.LoginLayoutProfessor" />
+        <activity android:name=".Interface.Login.LoginLayoutTutor" />
         <activity android:name=".Interface.Tutor.PerfilTutor"></activity>
     </application>
 

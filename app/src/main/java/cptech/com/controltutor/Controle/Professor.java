@@ -11,8 +11,22 @@ public class Professor extends Usuario implements Serializable {
     private List<Tutor> tutores;
     private List<Discente> discentes;
     private List<Lista> listas;
+    public static Professor instance;
+
+
 
     public Professor() {
+    }
+
+    public static Professor getInstance() {
+        if(instance == null) {
+            instance = new Professor();
+        }
+        return instance;
+    }
+
+    public static void setInstance(Professor professor){
+        instance = professor;
     }
 
     public List<Tutor> getTutores() {

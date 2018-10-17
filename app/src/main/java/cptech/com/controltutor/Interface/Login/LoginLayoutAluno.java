@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
@@ -20,42 +22,36 @@ import cptech.com.controltutor.Controle.Discente;
 import cptech.com.controltutor.Controle.API.SessionController;
 import cptech.com.controltutor.Interface.Discente.CadastroDiscente;
 import cptech.com.controltutor.Interface.Discente.PerfilAlunoActivity;
+import cptech.com.controltutor.Interface.MainActivity;
 import cptech.com.controltutor.R;
 
-public class LoginLayout extends AppCompatActivity {
+public class LoginLayoutAluno extends AppCompatActivity {
     private DiscenteRestClient discenteRestClient;
-    private UserRestClient userRestClient;
+    private TextView boasVindas;
     private EditText loginEdit;
     private EditText senhaEdit;
     private Button confirmar;
     private Button cadastrar;
+    private ProgressBar progresso;
     private AlertDialog alert;
     private SessionController sessionController;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
+        loginEdit = findViewById(R.id.login);
+        senhaEdit = findViewById(R.id.senha);
         sessionController = new SessionController(getBaseContext());
-
-
-        Long id = sessionController.findAll();
-        if(id!=-1){
-            try {
-                 new HttpVerificaConta().execute(id).get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
-
-        loginEdit = findViewById(R.id.loginDiscente);
-        senhaEdit = findViewById(R.id.senhaDiscente);
+        boasVindas = findViewById(R.id.boas_vindas);
         confirmar = findViewById(R.id.bottonConfirmar);
-        cadastrar = findViewById(R.id.bottonCad);
+        loginEdit.setTextColor(getResources().getColor(R.color.colorCharacter));
+        senhaEdit.setTextColor(getResources().getColor(R.color.colorCharacter));
+        progresso = findViewById(R.id.progressLogin);
+        boasVindas.setText(boasVindas.getText()+"Aluno");
         confirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                    progresso.setVisibility(View.VISIBLE);
                     String user, senha;
                     user = loginEdit.getText().toString();
                     senha = senhaEdit.getText().toString();
@@ -64,29 +60,26 @@ public class LoginLayout extends AppCompatActivity {
                 try {
                     aux = new HttpLogin().execute(user, senha).get();
                     if(aux==null){
-                        Toast.makeText(LoginLayout.this, "Deu erro", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginLayoutAluno.this, "Login ou senha incorreto", Toast.LENGTH_SHORT).show();
+                        progresso.setVisibility(View.INVISIBLE);
                     }else{
-                        Toast.makeText(LoginLayout.this, "Passou", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginLayoutAluno.this, "Passou", Toast.LENGTH_SHORT).show();
                         String mensagem = sessionController.insert(aux.getNome(),aux.getId(),aux.getUsuario(),aux.getTipo());
                         if(mensagem.equals("Salvo")){
-                            Intent intent = new Intent(LoginLayout.this, PerfilAlunoActivity.class);
+                            Intent intent = new Intent(LoginLayoutAluno.this, PerfilAlunoActivity.class);
                             startActivity(intent);
                         }else{
-                            Toast.makeText(LoginLayout.this, "Erro", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginLayoutAluno.this, "Erro", Toast.LENGTH_SHORT).show();
+                            progresso.setVisibility(View.INVISIBLE);
                         }
                     }
                 } catch (InterruptedException e) {
+                    progresso.setVisibility(View.INVISIBLE);
                     e.printStackTrace();
                 } catch (ExecutionException e) {
+                    progresso.setVisibility(View.INVISIBLE);
                     e.printStackTrace();
                 }
-            }
-        });
-        cadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginLayout.this, CadastroDiscente.class);
-                startActivity(intent);
             }
         });
     }
@@ -105,48 +98,11 @@ public class LoginLayout extends AppCompatActivity {
             super.onPostExecute(result);
         }
     }
-    private class HttpVerificaConta extends AsyncTask<Long, Void, Void> {
-        @Override
-        protected Void doInBackground(Long... longs) {
-            userRestClient = new UserRestClient();
-            Log.w("id", String.valueOf(longs[0]));
-            long id = longs[0];
-            int resp = userRestClient.procurarDados(id);
-            if(resp==1){
-                Intent intent = new Intent(LoginLayout.this, PerfilAlunoActivity.class);
-                startActivity(intent);
-            }else if(resp==2){
-                Intent intent = new Intent(LoginLayout.this, PerfilAlunoActivity.class);
-                //startActivity(intent);
-            }else if(resp==3){
-                Intent intent = new Intent(LoginLayout.this, PerfilAlunoActivity.class);
-                // startActivity(intent);
-            }else{
-                Log.wtf("Deu erro","Erro");
-            }
 
-            return null;
-        }
-    }
 
     @Override
     public void onBackPressed(){
-        AlertDialog.Builder alerta = new AlertDialog.Builder(this);
-        alerta.setTitle("Atenção").setMessage("Deseja Sair?");
-        alerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                onStop();
-                System.exit(0);
-            }
-        });
-        alerta.setNegativeButton("Não", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-        alert = alerta.create();
-        alert.show();
+        Intent intent = new Intent(LoginLayoutAluno.this, MainActivity.class);
+        startActivity(intent);
     }
 }

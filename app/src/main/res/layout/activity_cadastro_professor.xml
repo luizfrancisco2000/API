@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".Interface.Discente.CadastroDiscente">
+    tools:context=".Interface.Professor.CadastroProfessor">
     <LinearLayout
         android:paddingLeft="@android:dimen/app_icon_size"
         android:paddingRight="@android:dimen/app_icon_size"
@@ -19,17 +19,16 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Número ID"
+            android:text="Usuario:"
             android:textAppearance="@style/AppTheme.letraembranco" />
 
         <EditText
-            android:inputType="number"
             android:backgroundTint="@color/colorCharacter"
             android:textColor="@color/colorCharacter"
             android:id="@+id/usuarioPCadEditId"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="0123"
+            android:hint="Username"
             android:textAppearance="@style/AppTheme.letraembranco" />
 
         <TextView
@@ -41,7 +40,7 @@
             android:inputType="textPersonName"
             android:backgroundTint="@color/colorCharacter"
             android:textColor="@color/colorCharacter"
-            android:hint="Username"
+            android:hint="Nome"
             android:id="@+id/nomePCadEditId"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
@@ -75,13 +74,13 @@
                 android:textColor="@color/colorCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cancelarCadId"
+                android:id="@+id/cancelarPCadId"
                 />
             <Button
                 android:backgroundTint="#00b8a9"
                 android:text="Continuar"
                 android:textColor="@color/colorCharacter"
-                android:id="@+id/salvarCadId"
+                android:id="@+id/salvarPCadId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
