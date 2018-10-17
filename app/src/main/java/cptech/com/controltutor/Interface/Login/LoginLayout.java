@@ -1,4 +1,4 @@
-package cptech.com.controltutor.Interface;
+package cptech.com.controltutor.Interface.Login;
 
 import android.content.DialogInterface;
 import android.content.Intent;

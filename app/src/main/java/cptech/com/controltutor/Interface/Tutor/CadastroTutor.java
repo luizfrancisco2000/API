@@ -1,13 +1,15 @@
-package cptech.com.controltutor;
+package cptech.com.controltutor.Interface.Tutor;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class PerfilTutor extends AppCompatActivity {
+import cptech.com.controltutor.R;
+
+public class CadastroTutor extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil_tutor);
+        setContentView(R.layout.activity_cadastro_tutor);
     }
 }

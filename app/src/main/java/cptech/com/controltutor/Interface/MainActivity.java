@@ -1,62 +1,55 @@
 package cptech.com.controltutor.Interface;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
 import cptech.com.controltutor.Connect.DiscenteRestClient;
 import cptech.com.controltutor.Connect.UserRestClient;
-import cptech.com.controltutor.Controle.Discente;
 import cptech.com.controltutor.Controle.API.SessionController;
+import cptech.com.controltutor.Controle.Professor;
 import cptech.com.controltutor.Interface.Discente.CadastroDiscente;
 import cptech.com.controltutor.Interface.Discente.PerfilAlunoActivity;
-import cptech.com.controltutor.Interface.*;
+import cptech.com.controltutor.Interface.Login.LoginLayout;
+import cptech.com.controltutor.Interface.Menus.AlunoFragment;
+import cptech.com.controltutor.Interface.Menus.ProfessorFragment;
+import cptech.com.controltutor.Interface.Menus.TutorFragment;
 import cptech.com.controltutor.R;
 
 public class MainActivity extends AppCompatActivity {
-    private DiscenteRestClient discenteRestClient;
     private UserRestClient userRestClient;
-    private EditText loginEdit;
-    private EditText senhaEdit;
-    private Button entrar;
-    private Button cadastrar;
-    private ImageView imagem;
-    private ImageButton buttonProx, buttonAnt;
     private AlertDialog alert;
     private SessionController sessionController;
-    private int contador;
-
+    private FrameLayout contentsTelas;
+    private ImageButton proxButton, antButton;
+    private Button cadUser, loginUser;
+    private char tipo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        contador = 1;
+        contentsTelas = findViewById(R.id.containerForFragment);
         sessionController = new SessionController(getBaseContext());
-        entrar = findViewById(R.id.acessar_user);
-        cadastrar = findViewById(R.id.cadastrar_user);
-        buttonAnt = findViewById(R.id.button_prevUser);
-        buttonProx = findViewById(R.id.button_nextUser);
-        imagem = findViewById(R.id.image_menu);
+        proxButton = findViewById(R.id.button_nextUser);
+        antButton = findViewById(R.id.button_prevUser);
+        cadUser = findViewById(R.id.cadastrar_user);
+        loginUser = findViewById(R.id.acessar_user);
         final Long id = sessionController.findAll();
         if (id != -1) {
             try {
@@ -67,55 +60,47 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        buttonProx.setOnClickListener(new View.OnClickListener() {
+        AlunoFragment fragmentAluno = new AlunoFragment();
+        managerFragment(fragmentAluno, "FRAGMENT_ALUNO");
+        tipo = 'A';
+        proxButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    if (contador < 3) {
-                        contador++;
-                        if (contador == 2) {
-                            Log.d("Professor", "if do professor");
-                            imagem.setBackground(getResources().getDrawable(R.drawable.professor));
-                        } else if (contador == 3) {
-                            Log.d("tutor", "if do tutor");
-                            imagem.setBackgroundResource(R.drawable.tutor);
-                        }
-                    } else if (contador == 3) {
-                        contador = 1;
-                        imagem.setBackgroundResource(R.drawable.aluno);
-                    }
+            public void onClick(View view) {
+                if(tipo=='A'){
+                    ProfessorFragment fragmentProfessor = new ProfessorFragment();
+                    managerFragment(fragmentProfessor, "FRAGMENT_PROFESSOR");
+                    tipo='P';
+                }
+                if(tipo=='P'){
+                    TutorFragment fragmentTutor = new TutorFragment();
+                    managerFragment(fragmentTutor, "FRAGMENT_TUTOR");
+                    tipo='T';
+                }
+                if(tipo=='T'){
+                    AlunoFragment fragmentAluno = new AlunoFragment();
+                    managerFragment(fragmentAluno, "FRAGMENT_ALUNO");
+                    tipo='A';
                 }
             }
         });
-        buttonAnt.setOnClickListener(new View.OnClickListener()
-
-        {
+        antButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (contador > 1) {
-                    contador--;
-                } else if (contador == 1) {
-                    contador = 3;
+            public void onClick(View view) {
+                if(tipo=='A'){
+                    TutorFragment fragmentTutor = new TutorFragment();
+                    managerFragment(fragmentTutor, "FRAGMENT_TUTOR");
+                    tipo='T';
                 }
-            }
-        });
-
-        entrar.setOnClickListener(new View.OnClickListener()
-
-        {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, LoginLayout.class);
-                startActivity(intent);
-            }
-        });
-        entrar.setOnClickListener(new View.OnClickListener()
-
-        {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CadastroDiscente.class);
-                startActivity(intent);
+                if(tipo=='P'){
+                    AlunoFragment fragmentAluno = new AlunoFragment();
+                    managerFragment(fragmentAluno, "FRAGMENT_ALUNO");
+                    tipo='A';
+                }
+                if(tipo=='T'){
+                    ProfessorFragment fragmentProfessor = new ProfessorFragment();
+                    managerFragment(fragmentProfessor, "FRAGMENT_PROFESSOR");
+                    tipo='P';
+                }
             }
         });
     }
@@ -163,6 +148,13 @@ public class MainActivity extends AppCompatActivity {
 
             return null;
         }
+    }
+
+    private void managerFragment(Fragment fragment, String tag) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.containerForFragment, fragment, tag);
+        fragmentTransaction.commit();
     }
 
 }

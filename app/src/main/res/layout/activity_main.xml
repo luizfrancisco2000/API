@@ -14,13 +14,13 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_marginTop="@android:dimen/app_icon_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
-            android:textSize="16dp"
+            android:layout_marginTop="@android:dimen/app_icon_size"
+            android:text="Escolha o tipo de conta com que deseja entrar."
             android:textColor="@color/colorCharacter"
-            android:text="Escolha o tipo de conta com que deseja entrar." />
+            android:textSize="16dp" />
 
         <LinearLayout
             android:gravity="center"
@@ -58,13 +58,19 @@
                 android:tint="@color/colorBackground"
                 android:backgroundTint="#c06014"/>
 
-                <ImageView
+                <!--ImageView
                     android:id="@+id/image_menu"
                     android:layout_width="@android:dimen/thumbnail_height"
                     android:layout_height="@android:dimen/thumbnail_height"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:background="@color/colorCharacter"
-                    android:src="@drawable/aluno" />
+                    android:src="@drawable/aluno" /-->
+                <FrameLayout
+                    android:id="@+id/containerForFragment"
+                    android:layout_width="@android:dimen/thumbnail_height"
+                    android:layout_height="@android:dimen/thumbnail_height"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:background="@color/colorCharacter"/>
             <ImageButton
                 android:id="@+id/button_nextUser"
                 android:layout_gravity="center_vertical|center_horizontal"
@@ -100,12 +106,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
-
-
-
         </LinearLayout>
 
-            </LinearLayout>
+    </LinearLayout>
 
 
 </RelativeLayout>

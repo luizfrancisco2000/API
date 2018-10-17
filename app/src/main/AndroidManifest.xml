@@ -31,10 +31,10 @@
         <activity android:name=".Interface.Discente.GaleriaCodigos" />
         <activity android:name=".Interface.Professor.activity_perfil_professor" />
         <activity android:name=".Interface.Discente.CadastroCodigo" />
-        <activity android:name=".Interface.Menus.CadastroProfessor" />
-        <activity android:name=".Interface.Menus.CadastroTutor" />
-        <activity android:name=".Interface.LoginLayout" />
-        <activity android:name=".PerfilTutor"></activity>
+        <activity android:name=".Interface.Professor.CadastroProfessor" />
+        <activity android:name=".Interface.Tutor.CadastroTutor" />
+        <activity android:name=".Interface.Login.LoginLayout" />
+        <activity android:name=".Interface.Tutor.PerfilTutor"></activity>
     </application>
 
 </manifest>
