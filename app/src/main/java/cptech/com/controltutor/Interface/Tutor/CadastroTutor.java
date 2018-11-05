@@ -53,8 +53,10 @@ public class CadastroTutor extends AppCompatActivity {
                     try {
                         if (new HttpProcurarUserTutor().execute(usuarioCadTutor.getText().toString()).get()) {
                             Toast.makeText(CadastroTutor.this, "Certo", Toast.LENGTH_SHORT).show();
+                            salvarCadTutor.setEnabled(true);
                         } else {
                             Toast.makeText(CadastroTutor.this, "Usuario já cadastrado... utilize outro", Toast.LENGTH_SHORT).show();
+                            salvarCadTutor.setEnabled(false);
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();

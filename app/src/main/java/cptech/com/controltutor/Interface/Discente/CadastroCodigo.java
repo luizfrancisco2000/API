@@ -83,9 +83,8 @@ public class CadastroCodigo extends AppCompatActivity {
 
     private void cadastrar() {
        File aux =  transformarTextToC();
-        FileInputStream fis = null;
         try {
-            fis = new FileInputStream(aux);
+            FileInputStream fis = new FileInputStream(aux);
             //System.out.println(file.exists() + "!!");
             //InputStream in = resource.openStream();
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -123,8 +122,7 @@ public class CadastroCodigo extends AppCompatActivity {
         byte[] dados;
         try
         {
-
-            arq = new File(Environment.getExternalStorageDirectory(), "programa: "+ codigo.getDiscente().getUsuario()+".c");
+            arq = new File(Environment.getExternalStorageDirectory(), "programa/"+"chico"+".c");
             FileOutputStream fos;
             FileInputStream fis;
             dados = codigoText.getText().toString().getBytes();
@@ -147,7 +145,6 @@ public class CadastroCodigo extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 onStop();
-                System.exit(0);
             }
         });
         alert = alerta.create();
@@ -179,6 +176,25 @@ public class CadastroCodigo extends AppCompatActivity {
             verFoto.setImageBitmap(bmp);
             OCRClass ocr = new OCRClass(verFoto.getContext(),bmp);
             codigoText.setText(ocr.readToImage());
+            File aux =  transformarTextToC();
+            try {
+                FileInputStream fis = new FileInputStream(aux);
+                //System.out.println(file.exists() + "!!");
+                //InputStream in = resource.openStream();
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                byte[] buf = new byte[1024];
+                try {
+                    for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                        bos.write(buf, 0, readNum); //no doubt here is 0
+                        //Writes len bytes from the specified byte array starting at offset off to this byte array output stream.
+                        System.out.println("read " + readNum + " bytes,");
+                    }
+                } catch (IOException ex) {
+                    ex.getMessage();
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bmp, 300, 300, true);
             verFoto.setImageBitmap(bitmapReduzido);
         }

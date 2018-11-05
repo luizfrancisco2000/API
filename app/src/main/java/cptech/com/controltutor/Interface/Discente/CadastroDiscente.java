@@ -60,8 +60,10 @@ public class CadastroDiscente extends AppCompatActivity {
                     try {
                         if(new HttpProcurarUserDiscente().execute(campoUsuario.getText().toString()).get()){
                             Toast.makeText(CadastroDiscente.this, "Certo", Toast.LENGTH_SHORT).show();
+                            buttonCad.setEnabled(true);
                         }else{
                             Toast.makeText(CadastroDiscente.this, "Usuario já cadastrado... utilize outro", Toast.LENGTH_SHORT).show();
+                            buttonCad.setEnabled(false);
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();

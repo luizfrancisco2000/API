@@ -52,8 +52,11 @@ public class CadastroProfessor extends AppCompatActivity {
                     try {
                         if(new HttpProcurarUserProfessor().execute(usuarioCadProf.getText().toString()).get()){
                             Toast.makeText(CadastroProfessor.this, "Certo", Toast.LENGTH_SHORT).show();
+                            salvarCadProf.setEnabled(true);
+
                         }else{
                             Toast.makeText(CadastroProfessor.this, "Usuario já cadastrado... utilize outro", Toast.LENGTH_SHORT).show();
+                            salvarCadProf.setEnabled(false);
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
