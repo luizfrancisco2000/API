@@ -15,12 +15,12 @@ import java.util.HashMap;
 
 import cptech.com.controltutor.Controle.Tutor;
 
-public class TutorRestClient {
+public class TutorRestClient extends RestClient{
     //http://10.100.37.192:8000
     //http://10.100.38.128:8000
     //http://10.100.45.241:8000
     //10.100.38.136
-    private final String BASE_URL = "http://10.100.38.128:8000/api/tutor/";
+    private final String BASE_URL = BASE+ "tutor/";
     private RestTemplate restTemplate;
     private String url;
 

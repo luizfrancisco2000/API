@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         cadUser = findViewById(R.id.cadastrar_user);
         loginUser = findViewById(R.id.acessar_user);
         typeMenu = findViewById(R.id.title_menu);
+        sessionController.delete();
         final Long id = sessionController.findAll();
         if (id != -1) {
             try {

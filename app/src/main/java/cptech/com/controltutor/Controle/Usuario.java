@@ -14,7 +14,7 @@ public class Usuario implements Serializable {
     private String nome;
     private char tipo;
     private String senha;
-
+    private boolean firstAcess;
     public Usuario() {
     }
 
@@ -56,5 +56,13 @@ public class Usuario implements Serializable {
 
     public void setTipo(char tipo) {
         this.tipo = tipo;
+    }
+
+    public boolean isFirstAcess() {
+        return firstAcess;
+    }
+
+    public void setFirstAcess(boolean firstAcess) {
+        this.firstAcess = firstAcess;
     }
 }

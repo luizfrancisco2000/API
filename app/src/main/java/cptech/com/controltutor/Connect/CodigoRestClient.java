@@ -18,12 +18,12 @@ import java.util.List;
 import cptech.com.controltutor.Controle.Codigo;
 import cptech.com.controltutor.Controle.Discente;
 
-public class CodigoRestClient {
+public class CodigoRestClient extends RestClient{
     //http://10.100.37.192:8000
     //10.100;38.128
     //http://10.100.45.241:8000
     //10.100.38.136
-    private final String BASE_URL = "http://10.100.38.128:8000/api/codigo/";
+    private final String BASE_URL = BASE+ "codigo/";
     private RestTemplate restTemplate;
     private String url;
 

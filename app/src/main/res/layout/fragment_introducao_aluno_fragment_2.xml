@@ -1,0 +1,17 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:layout_gravity="center_vertical|center_horizontal"
+    tools:context=".Interface.Discente.TelaDeIntroducao.Fragment.IntroducaoAluno2">
+
+    <ImageView
+        android:id="@+id/image_menu"
+        android:layout_width="@android:dimen/thumbnail_height"
+        android:layout_height="@android:dimen/thumbnail_height"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@color/colorCharacter"
+        android:src="@drawable/aluno" />
+
+</FrameLayout>

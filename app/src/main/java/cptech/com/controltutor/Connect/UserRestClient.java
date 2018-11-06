@@ -12,12 +12,12 @@ import cptech.com.controltutor.Controle.Professor;
 import cptech.com.controltutor.Controle.Tutor;
 import cptech.com.controltutor.Controle.Usuario;
 
-public class UserRestClient {
+public class UserRestClient extends RestClient{
     //http://10.100.38.121:8000
     //http://10.100.37.192:8000
     //http://10.100.45.241:8000
     //10.100.38.136
-    private final String BASE_URL = "http://10.100.38.128:8000/api/usuario/";
+    private final String BASE_URL = BASE+ "usuario/";
     private RestTemplate restTemplate;
     private String url;
     private DiscenteRestClient discenteRestClient;

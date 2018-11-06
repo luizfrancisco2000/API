@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="cptech.com.controltutor.Interface.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+        <!--ImageView
+                    android:id="@+id/image_menu"
+                    android:layout_width="@android:dimen/thumbnail_height"
+                    android:layout_height="@android:dimen/thumbnail_height"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:background="@color/colorCharacter"
+                    android:src="@drawable/aluno" /-->
+        <FrameLayout
+            android:id="@+id/containerForFragment"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="@color/colorCharacter" />
+
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/button_prevUser"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_media_previous"
+        android:tint="@color/colorBackground"
+        android:backgroundTint="#c06014"/>
+
+    <ImageButton
+        android:id="@+id/button_nextUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:backgroundTint="#c06014"
+        android:src="@android:drawable/ic_media_next"
+        android:tint="@color/colorBackground" />
+</RelativeLayout>

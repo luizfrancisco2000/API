@@ -7,9 +7,43 @@
     android:background="@color/colorBackground"
     tools:context=".Interface.Discente.PerfilAlunoActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        >
+
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header_menu_aluno"
+            app:menu="@menu/activity_menu_aluno_drawer" />
+
+    </android.support.v4.widget.DrawerLayout>
+
     <LinearLayout
         android:id="@+id/layoutPerfilAluno"
         android:layout_width="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
@@ -43,12 +77,6 @@
                 android:textAppearance="@style/AppTheme.letraembranco"
                 android:textSize="24sp" />
 
-            <ImageButton
-                android:id="@+id/sairButton"
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_lock_power_off" />
         </LinearLayout>
 
         <ImageView
@@ -95,5 +123,4 @@
             android:text="Galeria de Códigos"
             android:textAppearance="@style/AppTheme.letraembranco" />
     </LinearLayout>
-
 </android.support.constraint.ConstraintLayout>

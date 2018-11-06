@@ -1,5 +1,6 @@
 package cptech.com.controltutor.Interface.Discente;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,11 +12,19 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -37,11 +46,13 @@ import java.io.IOException;
 
 import cptech.com.controltutor.Connect.CodigoRestClient;
 import cptech.com.controltutor.Controle.API.OCR.OCRClass;
+import cptech.com.controltutor.Controle.API.SessionController;
 import cptech.com.controltutor.Controle.Codigo;
 import cptech.com.controltutor.Controle.Discente;
+import cptech.com.controltutor.Interface.MainActivity;
 import cptech.com.controltutor.R;
 
-public class CadastroCodigo extends AppCompatActivity {
+public class CadastroCodigo extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Spinner assuntos;
     private AlertDialog alert;
     private ImageButton foto;
@@ -49,12 +60,20 @@ public class CadastroCodigo extends AppCompatActivity {
     private ImageView verFoto;
     private FloatingActionButton finalizar;
     private Codigo codigo;
-
+    private SessionController session;
     private CodigoRestClient codigoRestClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_codigo);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout1);
+        //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+          //      this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        //drawer.addDrawerListener(toggle);
+       // toggle.syncState();
         enunciadoText = findViewById(R.id.enunciadoCadID);
         codigoText = findViewById(R.id.codigoCadID);
         assuntos = findViewById(R.id.assuntos);
@@ -69,7 +88,7 @@ public class CadastroCodigo extends AppCompatActivity {
                 procurarFoto();
             }
         });
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(CadastroCodigo.this,R.array.lp_assuntos,R.layout.padrao_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(CadastroCodigo.this, R.array.lp_assuntos, R.layout.padrao_spinner);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         assuntos.setAdapter(adapter);
         finalizar.setOnClickListener(new View.OnClickListener() {
@@ -82,34 +101,39 @@ public class CadastroCodigo extends AppCompatActivity {
     }
 
     private void cadastrar() {
-       File aux =  transformarTextToC();
+        File aux = transformarTextToC();
         try {
-            FileInputStream fis = new FileInputStream(aux);
-            //System.out.println(file.exists() + "!!");
-            //InputStream in = resource.openStream();
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
-            try {
-                for (int readNum; (readNum = fis.read(buf)) != -1;) {
-                    bos.write(buf, 0, readNum); //no doubt here is 0
-                    //Writes len bytes from the specified byte array starting at offset off to this byte array output stream.
-                    System.out.println("read " + readNum + " bytes,");
+            if (aux.exists()) {
+                FileInputStream fis = new FileInputStream(aux);
+                //System.out.println(file.exists() + "!!");
+                //InputStream in = resource.openStream();
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                byte[] buf = new byte[1024];
+                try {
+                    for (int readNum; (readNum = fis.read(buf)) != -1; ) {
+                        bos.write(buf, 0, readNum); //no doubt here is 0
+                        //Writes len bytes from the specified byte array starting at offset off to this byte array output stream.
+                        System.out.println("read " + readNum + " bytes,");
+                    }
+                } catch (IOException ex) {
+                    ex.getMessage();
                 }
-            } catch (IOException ex) {
-                ex.getMessage();
+                codigo.setResolucao(buf);
+                codigo.setResolucao(bos.toByteArray());
+                codigo.setAssunto(assuntos.getSelectedItem().toString());
+                codigo.setEnunciado(enunciadoText.getText().toString());
+            }else{
+                Log.d("Não existe","aaa");
             }
-            codigo.setResolucao(bos.toByteArray());
-            codigo.setAssunto(assuntos.getSelectedItem().toString());
-            codigo.setEnunciado(enunciadoText.getText().toString());
-            try{
-                if(new HttpCadastrarCodigo().execute(codigo).get()){
+            try {
+                if (new HttpCadastrarCodigo().execute(codigo).get()) {
                     Toast.makeText(this, "Funcionou", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(this, "Deu coco", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Deu coco na hora de salvar", Toast.LENGTH_SHORT).show();
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(this, "Deu coco", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Deu coco na hora de alguma coisa desconhecida", Toast.LENGTH_SHORT).show();
             }
             Toast.makeText(this, "Salvo!", Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException e) {
@@ -118,27 +142,28 @@ public class CadastroCodigo extends AppCompatActivity {
     }
 
     private File transformarTextToC() {
+
         File arq = null;
         byte[] dados;
-        try
-        {
-            arq = new File(Environment.getExternalStorageDirectory(), "programa/"+"chico"+".c");
-            FileOutputStream fos;
-            FileInputStream fis;
-            dados = codigoText.getText().toString().getBytes();
-            fos = new FileOutputStream(arq);
-            fos.write(dados);
-            fos.flush();
-            fos.close();
-        }
-        catch (Exception e)
-        {
+        try {
+            arq = new File(Environment.getExternalStorageDirectory(), "chico.c");
+            if (!arq.exists()) {
+                arq.createNewFile();
+            }
+            // Prepara para escrever no arquivo
+            FileWriter fw = new FileWriter(arq.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            // Escreve e fecha arquivo
+            bw.write(codigoText.getText().toString());
+            bw.close();
+        } catch (Exception e) {
             e.getMessage();
         }
         return arq;
     }
 
-    public void messagemInicial(){
+    public void messagemInicial() {
         AlertDialog.Builder alerta = new AlertDialog.Builder(this);
         alerta.setTitle("Atenção").setMessage("Os codigos serão salvos em formato .c");
         alerta.setNeutralButton("OK", new DialogInterface.OnClickListener() {
@@ -149,24 +174,24 @@ public class CadastroCodigo extends AppCompatActivity {
         });
         alert = alerta.create();
         alert.show();
-
         codigo = new Codigo();
         codigo.setDiscente(Discente.getInstance());
     }
-    public void procurarFoto(){
+
+    public void procurarFoto() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, 1);
     }
 
     @Override
-    protected void  onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         Bitmap bmp;
-        if(resultCode==RESULT_OK && requestCode==1){
+        if (resultCode == RESULT_OK && requestCode == 1) {
             Uri selectedImage = data.getData();
             verFoto.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
             String[] filePath = {MediaStore.Images.Media.DATA};
-            Cursor c = getContentResolver().query(selectedImage,filePath,null,null,null);
+            Cursor c = getContentResolver().query(selectedImage, filePath, null, null, null);
             c.moveToFirst();
             String picturePath = c.getString(c.getColumnIndex(filePath[0]));
             c.close();
@@ -174,9 +199,9 @@ public class CadastroCodigo extends AppCompatActivity {
             verFoto.buildDrawingCache();
             bmp = (BitmapFactory.decodeFile(picturePath));
             verFoto.setImageBitmap(bmp);
-            OCRClass ocr = new OCRClass(verFoto.getContext(),bmp);
+            OCRClass ocr = new OCRClass(verFoto.getContext(), bmp);
             codigoText.setText(ocr.readToImage());
-            File aux =  transformarTextToC();
+            File aux = transformarTextToC();
             try {
                 FileInputStream fis = new FileInputStream(aux);
                 //System.out.println(file.exists() + "!!");
@@ -184,7 +209,7 @@ public class CadastroCodigo extends AppCompatActivity {
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 byte[] buf = new byte[1024];
                 try {
-                    for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                    for (int readNum; (readNum = fis.read(buf)) != -1; ) {
                         bos.write(buf, 0, readNum); //no doubt here is 0
                         //Writes len bytes from the specified byte array starting at offset off to this byte array output stream.
                         System.out.println("read " + readNum + " bytes,");
@@ -199,25 +224,92 @@ public class CadastroCodigo extends AppCompatActivity {
             verFoto.setImageBitmap(bitmapReduzido);
         }
     }
-    public void validarPermissao(){
-        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)){
 
-            }else{
-                ActivityCompat.requestPermissions(this,new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},2);
+    public void validarPermissao() {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
+            }
+        }
+
+        if (ContextCompat.checkSelfPermission(CadastroCodigo.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
             }
         }
 
     }
+
     private class HttpCadastrarCodigo extends AsyncTask<Codigo, Void, Boolean> {
         @Override
         protected Boolean doInBackground(Codigo... codigos) {
             codigoRestClient = new CodigoRestClient();
             return codigoRestClient.insertCodigo(codigos[0]);
         }
+
         @Override
         protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_aluno, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.sairButton) {
+            session = new SessionController(getBaseContext());
+            String aux = session.delete();
+            if (aux.equals("apagado")) {
+                Toast.makeText(CadastroCodigo.this, "Sessão Finalizada... \n Retornando ao menu principal", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CadastroCodigo.this, MainActivity.class);
+                startActivity(intent);
+            }
+            return false;
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

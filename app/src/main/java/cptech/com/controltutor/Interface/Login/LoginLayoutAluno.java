@@ -22,6 +22,7 @@ import cptech.com.controltutor.Controle.Discente;
 import cptech.com.controltutor.Controle.API.SessionController;
 import cptech.com.controltutor.Interface.Discente.CadastroDiscente;
 import cptech.com.controltutor.Interface.Discente.PerfilAlunoActivity;
+import cptech.com.controltutor.Interface.Discente.TelaDeIntroducao.PerfilAlunoActivityIntroducao;
 import cptech.com.controltutor.Interface.MainActivity;
 import cptech.com.controltutor.R;
 
@@ -35,6 +36,7 @@ public class LoginLayoutAluno extends AppCompatActivity {
     private ProgressBar progresso;
     private AlertDialog alert;
     private SessionController sessionController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,28 +49,30 @@ public class LoginLayoutAluno extends AppCompatActivity {
         loginEdit.setTextColor(getResources().getColor(R.color.colorCharacter));
         senhaEdit.setTextColor(getResources().getColor(R.color.colorCharacter));
         progresso = findViewById(R.id.progressLogin);
-        boasVindas.setText(boasVindas.getText()+"Aluno");
+        boasVindas.setText(boasVindas.getText() + "Aluno");
         confirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    progresso.setVisibility(View.VISIBLE);
-                    String user, senha;
-                    user = loginEdit.getText().toString();
-                    senha = senhaEdit.getText().toString();
-                    Log.d("user e senha", "user: "+user+" senha: "+senha);
+                progresso.setVisibility(View.VISIBLE);
+                String user, senha;
+                user = loginEdit.getText().toString();
+                senha = senhaEdit.getText().toString();
+                Log.d("user e senha", "user: " + user + " senha: " + senha);
                 Discente aux = null;
                 try {
                     aux = new HttpLogin().execute(user, senha).get();
-                    if(aux==null){
+                    if (aux == null) {
                         Toast.makeText(LoginLayoutAluno.this, "Login ou senha incorreto", Toast.LENGTH_SHORT).show();
                         progresso.setVisibility(View.INVISIBLE);
-                    }else{
+                    } else {
                         Toast.makeText(LoginLayoutAluno.this, "Passou", Toast.LENGTH_SHORT).show();
-                        String mensagem = sessionController.insert(aux.getNome(),aux.getId(),aux.getUsuario(),aux.getTipo());
-                        if(mensagem.equals("Salvo")){
-                            Intent intent = new Intent(LoginLayoutAluno.this, PerfilAlunoActivity.class);
-                            startActivity(intent);
-                        }else{
+                        String mensagem = sessionController.insert(aux.getNome(), aux.getId(), aux.getUsuario(), aux.getTipo());
+                        if (mensagem.equals("Salvo")) {
+                                Intent intent = new Intent(LoginLayoutAluno.this, PerfilAlunoActivity.class);
+                                startActivity(intent);
+                                //Intent intent = new Intent(LoginLayoutAluno.this, PerfilAlunoActivityIntroducao.class);
+                                //startActivity(intent);
+                        } else {
                             Toast.makeText(LoginLayoutAluno.this, "Erro", Toast.LENGTH_SHORT).show();
                             progresso.setVisibility(View.INVISIBLE);
                         }
@@ -83,13 +87,14 @@ public class LoginLayoutAluno extends AppCompatActivity {
             }
         });
     }
+
     private class HttpLogin extends AsyncTask<String, Void, Discente> {
 
         @Override
-        protected Discente doInBackground(String...strings) {
+        protected Discente doInBackground(String... strings) {
             discenteRestClient = new DiscenteRestClient();
 
-            Log.wtf("user e senha", "user: "+strings[0]+" senha: "+strings[1]);
+            Log.wtf("user e senha", "user: " + strings[0] + " senha: " + strings[1]);
             return discenteRestClient.loginDiscente(strings[0], strings[1]);
         }
 
@@ -101,7 +106,7 @@ public class LoginLayoutAluno extends AppCompatActivity {
 
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         Intent intent = new Intent(LoginLayoutAluno.this, MainActivity.class);
         startActivity(intent);
     }

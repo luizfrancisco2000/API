@@ -45,6 +45,7 @@ public class CadastroDiscente extends AppCompatActivity {
         turmas.setAdapter(adapter);
         discenteCad = new Discente();
         discenteCad.setTipo('A');
+        discenteCad.setFirstAcess(true);
         buttonCad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -16,12 +16,12 @@ import java.util.List;
 
 import cptech.com.controltutor.Controle.Discente;
 
-public class DiscenteRestClient {
+public class DiscenteRestClient extends RestClient{
     //http://10.100.37.192:8000
     //http://10.100.38.128:8000
     //http://10.100.45.241:8000
     //10.100.38.136
-    private final String BASE_URL = "http://10.100.38.128:8000/api/discente/";
+    private final String BASE_URL = BASE+ "discente/";
     private RestTemplate restTemplate;
     private String url;
 
@@ -43,6 +43,7 @@ public class DiscenteRestClient {
             valuesDiscente.put("codigos", discente.getCodigos());
             valuesDiscente.put("notas", discente.getNotas());
             valuesDiscente.put("ativo", discente.isAtivo());
+            valuesDiscente.put("firstAcess", discente.isFirstAcess());
             JSONObject jsonObject = new JSONObject();
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -56,6 +57,7 @@ public class DiscenteRestClient {
             jsonObject.put("codigos", discente.getCodigos());
             jsonObject.put("notas", discente.getNotas());
             jsonObject.put("ativo", discente.isAtivo());
+            jsonObject.put("firstAcess", discente.isFirstAcess());
             HttpEntity<String> entity = new HttpEntity<String>(jsonObject.toString(), headers);
             restTemplate.postForEntity(url, entity, null);
             Log.d("Deu","Deu");
