@@ -45,11 +45,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import cptech.com.controltutor.Connect.CodigoRestClient;
+import cptech.com.controltutor.Connect.DiscenteRestClient;
+import cptech.com.controltutor.Connect.UserRestClient;
 import cptech.com.controltutor.Controle.API.OCR.OCRClass;
 import cptech.com.controltutor.Controle.API.SessionController;
 import cptech.com.controltutor.Controle.Codigo;
 import cptech.com.controltutor.Controle.Discente;
 import cptech.com.controltutor.Interface.MainActivity;
+import cptech.com.controltutor.Interface.Professor.PerfilProfessor;
+import cptech.com.controltutor.Interface.Tutor.PerfilTutor;
 import cptech.com.controltutor.R;
 
 public class CadastroCodigo extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -62,6 +66,7 @@ public class CadastroCodigo extends AppCompatActivity implements NavigationView.
     private Codigo codigo;
     private SessionController session;
     private CodigoRestClient codigoRestClient;
+    private DiscenteRestClient discenteRestClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +122,17 @@ public class CadastroCodigo extends AppCompatActivity implements NavigationView.
                     }
                 } catch (IOException ex) {
                     ex.getMessage();
+                }
+                try{
+                    HttpProcuraUser operacao =  new HttpProcuraUser();
+                    final Long id = session.findAll();
+                    if (id != -1) {
+                        codigo.setDiscente(operacao.execute(id).get());
+                    }else{
+                        System.exit(2);
+                    }
+                }catch (Exception e){
+
                 }
                 codigo.setResolucao(buf);
                 codigo.setResolucao(bos.toByteArray());
@@ -174,8 +190,8 @@ public class CadastroCodigo extends AppCompatActivity implements NavigationView.
         });
         alert = alerta.create();
         alert.show();
+        session = new SessionController(getBaseContext());
         codigo = new Codigo();
-        codigo.setDiscente(Discente.getInstance());
     }
 
     public void procurarFoto() {
@@ -292,7 +308,6 @@ public class CadastroCodigo extends AppCompatActivity implements NavigationView.
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.sairButton) {
-            session = new SessionController(getBaseContext());
             String aux = session.delete();
             if (aux.equals("apagado")) {
                 Toast.makeText(CadastroCodigo.this, "Sessão Finalizada... \n Retornando ao menu principal", Toast.LENGTH_SHORT).show();
@@ -311,5 +326,13 @@ public class CadastroCodigo extends AppCompatActivity implements NavigationView.
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private class HttpProcuraUser extends AsyncTask<Long, Void, Discente>{
+        @Override
+        protected Discente doInBackground(Long... longs) {
+            discenteRestClient = new DiscenteRestClient();
+            Log.d("ID ASYNC", String.valueOf(longs[0]));
+            return discenteRestClient.procurarId(longs[0]);
+        }
     }
 }

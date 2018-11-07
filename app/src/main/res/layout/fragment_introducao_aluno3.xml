@@ -1,0 +1,57 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:layout_gravity="center_vertical|center_horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Interface.Discente.TelaDeIntroducao.Fragment.IntroducaoAluno3">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/image_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Digite o nome do seu tutor: "
+                android:textAppearance="@style/AppTheme.letraembranco" />
+
+            <SearchView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/AppTheme.letraembranco"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textAppearance="@style/AppTheme.letraembranco"></android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/salveBottonID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="14dp"
+            android:layout_x="322dp"
+            android:layout_y="508dp"
+            android:clickable="true"
+            app:backgroundTint="@android:color/holo_red_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_save" />
+    </RelativeLayout>
+
+
+
+</FrameLayout>

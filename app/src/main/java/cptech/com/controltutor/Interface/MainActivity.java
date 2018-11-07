@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         typeMenu = findViewById(R.id.title_menu);
         sessionController.delete();
         final Long id = sessionController.findAll();
-        if (id != -1) {
+            if (id != -1) {
             try {
                 new HttpVerificaConta().execute(id).get();
             } catch (InterruptedException e) {
