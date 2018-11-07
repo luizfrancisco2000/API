@@ -28,7 +28,7 @@ public class Discente extends Usuario implements Serializable {
     private Tutor tutor;
     @OneToMany(cascade = ALL)
     private List<Nota> notas;
-    @OneToMany(cascade = ALL, mappedBy = "discente")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "discente", fetch = FetchType.LAZY)
     private List<Codigo> codigos;
     /**
      * Quando o professor bloquear as questões em momentos de provas

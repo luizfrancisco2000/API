@@ -35,8 +35,8 @@ public class Codigo implements Serializable {
     @Column(name="avaliacao", nullable = false, length = 5)
     private int avaliacao;
     
-    @ManyToOne
-    @JoinColumn(name = "discente", nullable = true)
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn( name = "discente", nullable = true)
     private Discente discente;
 
     public Codigo() {
