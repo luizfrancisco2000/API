@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <meta-data
         android:name="com.google.android.gms.vision.DEPEDENCIES"
@@ -26,31 +26,40 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Interface.Discente.CadastroDiscente"
-            />
+        <activity android:name=".Interface.Discente.CadastroDiscente" />
         <activity android:name=".Interface.Discente.PerfilAlunoActivity" />
-        <activity android:name=".Interface.Discente.TelaDeIntroducao.PerfilAlunoActivityIntroducao"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Interface.Discente.MateriasTutor"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Interface.Discente.ListaProfessor"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Interface.Discente.GaleriaCodigos"
+        <activity
+            android:name=".Interface.Discente.TelaDeIntroducao.PerfilAlunoActivityIntroducao"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Interface.Professor.PerfilProfessor"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Interface.Discente.CadastroCodigo"
+        <activity
+            android:name=".Interface.Discente.MateriasTutor"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Interface.Discente.ListaProfessor"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Interface.Discente.GaleriaCodigos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Interface.Professor.PerfilProfessor"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Interface.Discente.CadastroCodigo"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Interface.Professor.CadastroProfessor" />
         <activity android:name=".Interface.Tutor.CadastroTutor" />
-        <activity android:name=".Interface.Login.LoginLayoutAluno"
+        <activity
+            android:name=".Interface.Login.LoginLayoutAluno"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Interface.Login.LoginLayoutProfessor"
+        <activity
+            android:name=".Interface.Login.LoginLayoutProfessor"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Interface.Login.LoginLayoutTutor"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Interface.Tutor.PerfilTutor"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Interface.Login.LoginLayoutTutor"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Interface.Tutor.PerfilTutor"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Interface.Discente.Fragment.MenuAluno"
             android:label="@string/title_activity_menu_aluno"
@@ -62,7 +71,8 @@
         <activity
             android:name=".Interface.Tutor.Fragment.MenuTutor"
             android:label="@string/title_activity_menu_tutor"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".TelaSeguranca"></activity>
     </application>
 
 </manifest>
