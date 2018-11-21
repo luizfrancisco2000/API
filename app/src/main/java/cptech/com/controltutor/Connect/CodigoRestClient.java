@@ -55,7 +55,6 @@ public class CodigoRestClient extends RestClient{
             jsonObject.put("discente", JSONObject.wrap(drc.updateAlunoFromTheCod(codigo)));
             HttpEntity<String> entity = new HttpEntity<String>(jsonObject.toString(), headers);
             restTemplate.postForEntity(url, entity, null);
-            drc.save();
             Log.d("Deu","Deu");
             return true;
         } catch (Exception e) {

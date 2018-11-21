@@ -50,6 +50,7 @@ public class DiscenteRestClient extends RestClient {
             JSONObject jsonObject = new JSONObject();
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
+            jsonObject.put("id", discente.getId());
             jsonObject.put("usuario", discente.getUsuario());
             jsonObject.put("nome", discente.getNome());
             jsonObject.put("senha", discente.getSenha());
@@ -62,6 +63,12 @@ public class DiscenteRestClient extends RestClient {
             jsonObject.put("ativo", discente.isAtivo());
             jsonObject.put("firstAcess", discente.isFirstAcess());
             Log.d("Deu", "Deu");
+            try{
+                HttpEntity<String> entity = new HttpEntity<String>(jsonObject.toString(), headers);
+                restTemplate.postForEntity(url, entity, null);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             return true;
         } catch (Exception e) {
             e.printStackTrace();
