@@ -5,6 +5,7 @@
  */
 package com.cptech.api.APIMinverva.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import static javax.persistence.CascadeType.ALL;
  *
  * @author Aluno
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "discente")
 public class Discente extends Usuario implements Serializable {

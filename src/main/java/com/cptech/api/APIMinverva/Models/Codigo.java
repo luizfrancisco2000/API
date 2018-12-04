@@ -5,6 +5,7 @@
  */
 package com.cptech.api.APIMinverva.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -13,6 +14,7 @@ import javax.persistence.*;
  *
  * @author Aluno
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "codigo")
 public class Codigo implements Serializable {
