@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Aluno on 10/08/2018.
  */
 
-public class Discente extends Usuario implements Serializable {
+public class Discente extends Usuario {
 
     private String turma;
 

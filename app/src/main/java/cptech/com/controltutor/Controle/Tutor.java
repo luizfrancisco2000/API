@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Aluno on 10/08/2018.
  */
 
-public class Tutor extends Usuario implements Serializable {
+public class Tutor extends Usuario{
 
     private List<Discente> discentes;
     private Professor professor;

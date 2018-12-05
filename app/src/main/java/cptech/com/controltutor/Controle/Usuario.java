@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by Aluno on 10/08/2018.
  */
 
-public class Usuario implements Serializable {
+public class Usuario{
     private Long id;
     private String usuario;
     private String nome;

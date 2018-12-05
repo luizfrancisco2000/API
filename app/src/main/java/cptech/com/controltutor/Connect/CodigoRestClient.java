@@ -1,22 +1,26 @@
 package cptech.com.controltutor.Connect;
 
-import android.database.Cursor;
 import android.util.Log;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
-import org.springframework.http.ContentCodingType;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.List;
 
+import cptech.com.controltutor.Controle.API.SingleProcessRequest;
 import cptech.com.controltutor.Controle.Codigo;
 import cptech.com.controltutor.Controle.Discente;
-import cptech.com.controltutor.Helper.SingleProcessRequest;
 
 public class CodigoRestClient extends RestClient{
     //http://10.100.37.192:8000
@@ -33,7 +37,7 @@ public class CodigoRestClient extends RestClient{
     }
 
     public boolean insertCodigo(Codigo codigo) {
-        url = BASE_URL + "cadastrar";
+        url = BASE_URL + "cadastrar/"+codigo.getDiscente().getId();
         try {
             HashMap<String, Object> valuesDiscente = new HashMap<>();
             SingleProcessRequest singleProcessRequest = new SingleProcessRequest(codigo.getResolucao());
@@ -47,12 +51,12 @@ public class CodigoRestClient extends RestClient{
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             codigo.setAvaliacao(0);
+            ObjectMapper om = new ObjectMapper();
+            om.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
             jsonObject.put("assunto", codigo.getAssunto());
             jsonObject.put("enunciado", codigo.getEnunciado());
             jsonObject.put("resolucao", singleProcessRequest.getUrl());
             jsonObject.put("avaliacao", codigo.getAvaliacao());
-            DiscenteRestClient drc = new DiscenteRestClient();
-            jsonObject.put("discente", JSONObject.wrap(drc.updateAlunoFromTheCod(codigo)));
             HttpEntity<String> entity = new HttpEntity<String>(jsonObject.toString(), headers);
             restTemplate.postForEntity(url, entity, null);
             Log.d("Deu","Deu");
@@ -64,16 +68,17 @@ public class CodigoRestClient extends RestClient{
 
     }
 
-    public List listAllCodigosByDiscente(){
-        url = BASE_URL + "ProcuraAluno";
+    public List listAllCodigosByDiscente(Long idDiscente){
+        url = BASE_URL + "ProcuraAluno/"+idDiscente;
         try{
-
-            return null;
-            /*discente = restTemplate.exchange(url,HttpMethod.GET,null,
-                    new ParameterizedTypeReference<Discente>(){}).getBody();*/
-           /* restTemplate.exchange(url, HttpMethod.GET, null,
-                    new ParameterizedTypeReference<Discente>() {}).getBody();*/
-
+            List<Codigo> codigos = restTemplate.exchange(url, HttpMethod.GET,
+                    null, new ParameterizedTypeReference<List<Codigo>>() {}).getBody();
+            if(codigos==null){
+                Log.d("NAO FOI POSSIVEL","EAE");
+                return null;
+            }else{
+                return codigos;
+            }
         }catch (Exception e){
             e.printStackTrace();
             return null;

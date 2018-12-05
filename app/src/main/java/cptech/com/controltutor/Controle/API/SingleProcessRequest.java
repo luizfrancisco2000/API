@@ -1,4 +1,4 @@
-package cptech.com.controltutor.Helper;
+package cptech.com.controltutor.Controle.API;
 
 import android.graphics.Bitmap;
 import android.util.Base64;
@@ -16,7 +16,7 @@ public class SingleProcessRequest {
     }
 
     public SingleProcessRequest(byte[] fileBytes) {
-        url =  Base64.encodeToString(fileBytes, Base64.DEFAULT);
+        url = Base64.encodeToString(fileBytes, Base64.DEFAULT);
     }
 
     private String bitmapToBase64(Bitmap image) {

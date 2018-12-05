@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Aluno on 10/08/2018.
  */
 
-public class Nota implements Serializable {
+public class Nota  {
     private Long id;
     private int bimestre;
     private int prova;

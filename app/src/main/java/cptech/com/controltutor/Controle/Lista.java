@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Aluno on 10/08/2018.
  */
 
-public class Lista implements Serializable {
+public class Lista  {
     private Long id;
     private String assunto;
     private byte[] lista;

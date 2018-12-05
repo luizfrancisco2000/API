@@ -84,12 +84,11 @@ public class DiscenteRestClient extends RestClient {
             e.printStackTrace();
         }
     }
-    public HashMap updateAlunoFromTheCod(Codigo codigo) {
+    public Discente updateAlunoFromTheCod(Codigo codigo) {
         url = BASE_URL + "atualizar";
         try {
             Discente discente = codigo.getDiscente();
             HashMap<String, Object> valuesDiscente = new HashMap<>();
-            valuesDiscente.put("id", discente.getId());
             valuesDiscente.put("usuario", discente.getUsuario());
             valuesDiscente.put("nome", discente.getNome());
             valuesDiscente.put("senha", discente.getSenha());
@@ -105,6 +104,7 @@ public class DiscenteRestClient extends RestClient {
             jsonObject.put("usuario", discente.getUsuario());
             Log.d("NOME", discente.getNome());
             jsonObject.put("id", discente.getId());
+            jsonObject.put("usuario", discente.getUsuario());
             jsonObject.put("nome", discente.getNome());
             jsonObject.put("senha", discente.getSenha());
             jsonObject.put("turma", discente.getTurma());
@@ -115,11 +115,8 @@ public class DiscenteRestClient extends RestClient {
             jsonObject.put("notas", JSONObject.wrap(discente.getNotas()));
             jsonObject.put("ativo", discente.isAtivo());
             jsonObject.put("firstAcess", discente.isFirstAcess());
-            HttpEntity<String> entity = new HttpEntity<String>(jsonObject.toString(), headers);
-            restTemplate.exchange(url, HttpMethod.PUT, entity, new ParameterizedTypeReference<Discente>() {
-           }).getBody();
             Log.d("Deu", "Deu");
-            return valuesDiscente;
+            return null;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -159,6 +156,28 @@ public class DiscenteRestClient extends RestClient {
             });
             discente = response.getBody();
             return discente;
+            /*discente = restTemplate.exchange(url,HttpMethod.GET,null,
+                    new ParameterizedTypeReference<Discente>(){}).getBody();
+           /* restTemplate.exchange(url, HttpMethod.GET, null,
+                    new ParameterizedTypeReference<Discente>() {}).getBody();
+            return true;*/
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ResponseEntity<Discente> procurarIdd(Long id) {
+
+        url = BASE_URL + String.valueOf(id);
+        Log.d("ID", String.valueOf(id));
+        Discente discente = Discente.getInstance();
+        try {
+
+            ResponseEntity<Discente> response = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<Discente>() {
+            });
+            return response;
+
             /*discente = restTemplate.exchange(url,HttpMethod.GET,null,
                     new ParameterizedTypeReference<Discente>(){}).getBody();
            /* restTemplate.exchange(url, HttpMethod.GET, null,
