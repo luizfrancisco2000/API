@@ -5,6 +5,7 @@
  */
 package com.cptech.api.APIMinverva.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
@@ -16,15 +17,18 @@ import static javax.persistence.CascadeType.ALL;
  */
 @Entity
 @Table(name = "tutor")
-public class Tutor extends Usuario implements Serializable {
-
+public class Tutor extends Usuario implements Serializable{
+    
+    @JsonIgnore
     @OneToMany(cascade = ALL, mappedBy = "tutor")
     private List<Discente> discentes;
-
+    
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "professor", nullable = true)
     private Professor professor;
 
+    @JsonIgnore
     @OneToMany(cascade = ALL, mappedBy = "tutor")
     private List<Lista> listas;
 

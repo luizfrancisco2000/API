@@ -8,6 +8,8 @@ package com.cptech.api.APIMinverva.Controller;
 import com.cptech.api.APIMinverva.Models.Codigo;
 import com.cptech.api.APIMinverva.Models.Discente;
 import com.cptech.api.APIMinverva.Repository.CodigoRepository;
+import com.cptech.api.APIMinverva.Repository.DiscenteRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
@@ -22,7 +24,8 @@ import org.springframework.web.bind.annotation.*;
 public class CodigoController {
     @Autowired
     CodigoRepository codigoRepositorio;
-
+    @Autowired
+    DiscenteRepository discenteRepositorio;
     //Pega Todos os codigos
     @RequestMapping(method = RequestMethod.GET, path = "/codigo")
     public ResponseEntity<?> getAllCodigo() {
@@ -30,8 +33,10 @@ public class CodigoController {
     }
 
     //Cria um codigo.
-    @RequestMapping(method = RequestMethod.POST, path = "/codigo/cadastrar")
-    public ResponseEntity<?> insertProfessor(@Valid @RequestBody Codigo codigo) {
+    @RequestMapping(method = RequestMethod.POST, path = "/codigo/cadastrar/{id}")
+    public ResponseEntity<?> insertCodigo(@Valid @RequestBody Codigo codigo, @PathVariable("id") Long discenteID) {
+        ObjectMapper mapp = new ObjectMapper();
+        codigo.setDiscente(mapp.convertValue(discenteRepositorio.findById(discenteID).get(), Discente.class));
         return new ResponseEntity<>(codigoRepositorio.save(codigo), HttpStatus.OK);
     }
 
@@ -44,9 +49,9 @@ public class CodigoController {
     
     
     //atualiza codigo
-    @RequestMapping(method = RequestMethod.PUT, path = "/codigo/atualizar")
-    public ResponseEntity<?> updateCodigo(@Valid @RequestBody Codigo codigo) {
-        Codigo codigoAux = codigoRepositorio.findById(codigo.getId()).get();
+    @RequestMapping(method = RequestMethod.PUT, path = "/codigo/atualizar/{id}")
+    public ResponseEntity<?> updateCodigo(@Valid @RequestBody Codigo codigo,@PathVariable("id") Long codigoID) {
+        Codigo codigoAux = codigoRepositorio.findById(codigoID).get();
         codigoAux.setAvaliacao(codigo.getAvaliacao());
         codigoAux.setDiscente(codigo.getDiscente());
         codigoAux.setEnunciado(codigo.getEnunciado());
@@ -55,8 +60,10 @@ public class CodigoController {
     }
     
     //Procura Codigos
-    @RequestMapping(method = RequestMethod.GET, path="/codigo/ProcuraAluno")
-    public ResponseEntity<?> findCodigoByAluno(@Valid @RequestBody Discente discente){
-        return new ResponseEntity<>(codigoRepositorio.findByDiscente(discente), HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.GET, path="/codigo/ProcuraAluno/{id}")
+    public ResponseEntity<?> findCodigoByAluno(@PathVariable("id") Long discenteID){
+        ObjectMapper mapp = new ObjectMapper();
+        
+        return new ResponseEntity<>(codigoRepositorio.findByDiscente(mapp.convertValue(discenteRepositorio.findById(discenteID).get(), Discente.class)), HttpStatus.OK);
     }
 }

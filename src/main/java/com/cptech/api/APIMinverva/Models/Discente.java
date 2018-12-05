@@ -6,6 +6,9 @@
 package com.cptech.api.APIMinverva.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
@@ -28,9 +31,11 @@ public class Discente extends Usuario implements Serializable {
     @ManyToOne
     @JoinColumn(name = "tutor", nullable = true)
     private Tutor tutor;
-    @OneToMany(cascade = ALL)
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "discente")
     private List<Nota> notas;
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "discente", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "discente")
     private List<Codigo> codigos;
     /**
      * Quando o professor bloquear as questões em momentos de provas

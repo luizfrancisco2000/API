@@ -5,6 +5,7 @@
  */
 package com.cptech.api.APIMinverva.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
@@ -17,7 +18,7 @@ import javax.persistence.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "codigo")
-public class Codigo implements Serializable {
+public class Codigo implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,7 +38,8 @@ public class Codigo implements Serializable {
     @Column(name="avaliacao", nullable = false, length = 5)
     private int avaliacao;
     
-    @ManyToOne(cascade=CascadeType.ALL)
+    @JsonIgnore
+    @ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn( name = "discente", nullable = true)
     private Discente discente;
 

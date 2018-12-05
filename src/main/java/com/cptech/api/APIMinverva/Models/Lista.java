@@ -5,6 +5,7 @@
  */
 package com.cptech.api.APIMinverva.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.*;
 /**
@@ -13,7 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="lista")
-public class Lista implements Serializable {
+public class Lista implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,10 +25,11 @@ public class Lista implements Serializable {
     @Column(name="lista", nullable=false, length=255, columnDefinition ="BLOB")
     private byte[] lista;
     
-    @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "professor", nullable = true)
     private Professor professor;
-
+    
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tutor", nullable = true)
     private Tutor tutor;

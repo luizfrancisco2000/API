@@ -17,7 +17,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "usuario")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Usuario implements Serializable {
+public class Usuario implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
