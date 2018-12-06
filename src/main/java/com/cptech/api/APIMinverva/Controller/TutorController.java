@@ -83,8 +83,7 @@ public class TutorController {
     
     @RequestMapping(method = RequestMethod.GET, path="/tutor/ProcurarUsuario/{usuario}")
     public ResponseEntity<?> findTutorByUser(@PathVariable("usuario") String usuario){
-        ObjectMapper mapp = new ObjectMapper();
-        return new ResponseEntity<>(mapp.convertValue(tutorRepositorio.tutorGetByUser(usuario),Tutor.class), HttpStatus.OK);
+        return new ResponseEntity<>(tutorRepositorio.tutorGetByUser(usuario), HttpStatus.OK);
     }
     //Procura Tutors por professor
     /*@RequestMapping(method = RequestMethod.PUT, path="/tutor/procuraComProfessor")
