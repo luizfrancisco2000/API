@@ -43,7 +43,7 @@ public class TutoresAdapter extends RecyclerView.Adapter<TutoresAdapter.ViewHold
         Tutor tutor = tutores.get(position);
 
         holder.nome.setText(tutor.getNome());
-        holder.qtdeTutorandos.setText(tutor.getDiscentes().size());
+        holder.qtdeTutorandos.setText("0");
     }
 
     @Override
@@ -57,7 +57,7 @@ public class TutoresAdapter extends RecyclerView.Adapter<TutoresAdapter.ViewHold
         private TextView qtdeTutorandos;
         public ViewHolder(View itemView) {
             super(itemView);
-            parentLayout = itemView.findViewById(R.id.procurarTutor);
+            parentLayout = itemView.findViewById(R.id.layout_pesquisa_tutor);
             nome = itemView.findViewById(R.id.usuario_tutor);
             qtdeTutorandos = itemView.findViewById(R.id.quantidade_tutorandos);
         }
