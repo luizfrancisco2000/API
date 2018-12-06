@@ -60,19 +60,15 @@
         <activity
             android:name=".Interface.Tutor.PerfilTutor"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".TelaSeguranca" />
         <activity
-            android:name=".Interface.Discente.Fragment.MenuAluno"
-            android:label="@string/title_activity_menu_aluno"
-            android:theme="@style/AppTheme" />
+            android:name=".Interface.Discente.Fragment.ActivityAlunoMenu"
+            android:label="@string/title_activity_aluno_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Interface.Professor.Fragment.MenuProfesso"
-            android:label="@string/title_activity_menu_professo"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".Interface.Tutor.Fragment.MenuTutor"
-            android:label="@string/title_activity_menu_tutor"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".TelaSeguranca"></activity>
+            android:name=".Interface.Discente.Fragment.ProcurarTutor"
+            android:label="@string/title_activity_procurar_tutor"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

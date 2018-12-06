@@ -10,30 +10,28 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import cptech.com.controltutor.Controle.Codigo;
+import cptech.com.controltutor.Controle.Tutor;
 import cptech.com.controltutor.R;
 
-public class CodigoAdapter extends RecyclerView.Adapter<CodigoAdapter.ViewHolder>{
+public class TutoresAdapter extends RecyclerView.Adapter<TutoresAdapter.ViewHolder>{
 
     private static final String TAG = "CODIGOAdapter";
 
     private Context context;
-    private List<Codigo> codigos;
+    private List<Tutor> tutores;
 
-    public CodigoAdapter(Context context, List<Codigo> codigos) {
+    public TutoresAdapter(Context context, List<Tutor> tutores) {
         this.context = context;
-        this.codigos = codigos;
+        this.tutores = tutores;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.lista_codigos_layout, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.lista_tutor_layout, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -42,30 +40,26 @@ public class CodigoAdapter extends RecyclerView.Adapter<CodigoAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
 
-        Codigo codigo = codigos.get(position);
+        Tutor tutor = tutores.get(position);
 
-        holder.enunciado.setText(codigo.getEnunciado());
-        holder.assunto.setText(codigo.getAssunto());
-        holder.avaliacao.setRating(codigo.getAvaliacao());
+        holder.nome.setText(tutor.getNome());
+        holder.qtdeTutorandos.setText(tutor.getDiscentes().size());
     }
 
     @Override
     public int getItemCount() {
-        return (codigos == null) ? 0 : codigos.size();
+        return (tutores == null) ? 0 : tutores.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private RelativeLayout parentLayout;
-        private TextView enunciado;
-        private TextView assunto;
-        private RatingBar avaliacao;
+        private TextView nome;
+        private TextView qtdeTutorandos;
         public ViewHolder(View itemView) {
             super(itemView);
-            parentLayout = itemView.findViewById(R.id.parent_layout);
-            enunciado = itemView.findViewById(R.id.enunciado_cod);
-            assunto = itemView.findViewById(R.id.assunto_cod);
-            avaliacao = itemView.findViewById(R.id.avaliacao_cod);
-            avaliacao.setIsIndicator(true);
+            parentLayout = itemView.findViewById(R.id.procurarTutor);
+            nome = itemView.findViewById(R.id.usuario_tutor);
+            qtdeTutorandos = itemView.findViewById(R.id.quantidade_tutorandos);
         }
     }
 }

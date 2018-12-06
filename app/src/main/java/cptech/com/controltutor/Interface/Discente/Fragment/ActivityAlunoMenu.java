@@ -1,40 +1,45 @@
-package cptech.com.controltutor.Interface.Discente;
+package cptech.com.controltutor.Interface.Discente.Fragment;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
+import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.widget.ImageButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import cptech.com.controltutor.Controle.API.SessionController;
+import cptech.com.controltutor.Interface.Discente.GaleriaCodigos;
+import cptech.com.controltutor.Interface.Discente.ListaProfessor;
+import cptech.com.controltutor.Interface.Discente.MateriasTutor;
+import cptech.com.controltutor.Interface.Discente.PerfilAlunoActivity;
 import cptech.com.controltutor.Interface.MainActivity;
 import cptech.com.controltutor.R;
 
-public class PerfilAlunoActivity extends AppCompatActivity{
+public class ActivityAlunoMenu extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
     private SessionController session;
     private AlertDialog alert;
     private ImageView imgTutor, imgLista, imgGaleria;
     private TextView txtTutor, txtLista, txtGaleria;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_perfil_aluno);
-
+        setContentView(R.layout.activity_aluno_menu);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         //imagens para acesso
         imgGaleria = findViewById(R.id.imgGaleria);
@@ -89,6 +94,60 @@ public class PerfilAlunoActivity extends AppCompatActivity{
             }
         });
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.activity_aluno_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+
+        if (id == R.id.search_tutor) {
+            // Handle the camera action
+            procurarTutor();
+        } else if (id == R.id.alterar_dados) {
+
+        } else if (id == R.id.notificacoes) {
+
+        } else if (id == R.id.rating_app) {
+
+        } else if (id == R.id.sac) {
+
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override
@@ -101,8 +160,8 @@ public class PerfilAlunoActivity extends AppCompatActivity{
                 session = new SessionController(getBaseContext());
                 String aux = session.delete();
                 if (aux.equals("apagado")) {
-                    Toast.makeText(PerfilAlunoActivity.this, "Sessão Finalizada... \n Retornando ao menu principal", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(PerfilAlunoActivity.this, MainActivity.class);
+                    Toast.makeText(ActivityAlunoMenu.this, "Sessão Finalizada... \n Retornando ao menu principal", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ActivityAlunoMenu.this, MainActivity.class);
                     startActivity(intent);
                 }
             }
@@ -132,4 +191,8 @@ public class PerfilAlunoActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
+    public void procurarTutor() {
+        Intent intent = new Intent(this, ProcurarTutor.class);
+        startActivity(intent);
+    }
 }

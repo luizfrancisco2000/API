@@ -21,6 +21,7 @@ import java.util.concurrent.ExecutionException;
 import cptech.com.controltutor.Connect.UserRestClient;
 import cptech.com.controltutor.Controle.API.SessionController;
 import cptech.com.controltutor.Interface.Discente.CadastroDiscente;
+import cptech.com.controltutor.Interface.Discente.Fragment.ActivityAlunoMenu;
 import cptech.com.controltutor.Interface.Discente.PerfilAlunoActivity;
 import cptech.com.controltutor.Interface.Login.LoginLayoutAluno;
 import cptech.com.controltutor.Interface.Login.LoginLayoutProfessor;
@@ -206,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
             long id = longs[0];
             int resp = userRestClient.procurarDados(id);
             if (resp == 1) {
-                Intent intent = new Intent(MainActivity.this, PerfilAlunoActivity.class);
+                Intent intent = new Intent(MainActivity.this, ActivityAlunoMenu.class);
                 startActivity(intent);
             } else if (resp == 2) {
                 Intent intent = new Intent(MainActivity.this, PerfilTutor.class);

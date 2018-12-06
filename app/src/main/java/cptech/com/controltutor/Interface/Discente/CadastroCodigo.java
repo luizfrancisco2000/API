@@ -56,7 +56,7 @@ import cptech.com.controltutor.Interface.Professor.PerfilProfessor;
 import cptech.com.controltutor.Interface.Tutor.PerfilTutor;
 import cptech.com.controltutor.R;
 
-public class CadastroCodigo extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CadastroCodigo extends AppCompatActivity {
     private Spinner assuntos;
     private AlertDialog alert;
     private ImageButton foto;
@@ -273,59 +273,6 @@ public class CadastroCodigo extends AppCompatActivity implements NavigationView.
         protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_aluno, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.sairButton) {
-            String aux = session.delete();
-            if (aux.equals("apagado")) {
-                Toast.makeText(CadastroCodigo.this, "Sessão Finalizada... \n Retornando ao menu principal", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(CadastroCodigo.this, MainActivity.class);
-                startActivity(intent);
-            }
-            return false;
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
     private class HttpProcuraUser extends AsyncTask<Long, Void, Discente>{
         @Override

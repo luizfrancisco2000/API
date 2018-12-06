@@ -21,6 +21,7 @@ import cptech.com.controltutor.Connect.UserRestClient;
 import cptech.com.controltutor.Controle.Discente;
 import cptech.com.controltutor.Controle.API.SessionController;
 import cptech.com.controltutor.Interface.Discente.CadastroDiscente;
+import cptech.com.controltutor.Interface.Discente.Fragment.ActivityAlunoMenu;
 import cptech.com.controltutor.Interface.Discente.PerfilAlunoActivity;
 import cptech.com.controltutor.Interface.Discente.TelaDeIntroducao.PerfilAlunoActivityIntroducao;
 import cptech.com.controltutor.Interface.MainActivity;
@@ -68,7 +69,7 @@ public class LoginLayoutAluno extends AppCompatActivity {
                         Toast.makeText(LoginLayoutAluno.this, "Passou", Toast.LENGTH_SHORT).show();
                         String mensagem = sessionController.insert(aux.getNome(), aux.getId(), aux.getUsuario(), aux.getTipo());
                         if (mensagem.equals("Salvo")) {
-                                Intent intent = new Intent(LoginLayoutAluno.this, PerfilAlunoActivity.class);
+                                Intent intent = new Intent(LoginLayoutAluno.this, ActivityAlunoMenu.class);
                                 startActivity(intent);
                                 //Intent intent = new Intent(LoginLayoutAluno.this, PerfilAlunoActivityIntroducao.class);
                                 //startActivity(intent);

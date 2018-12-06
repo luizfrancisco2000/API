@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
+import java.util.List;
 
 import cptech.com.controltutor.Controle.Tutor;
 
@@ -78,7 +79,7 @@ public class TutorRestClient extends RestClient{
         return tutor;
     }
 
-    public boolean listar(String user) {
+    /*public List<Tutor> listar(String user) {
         url = BASE_URL+"procuraUsuario/"+user;
         Tutor tutor = Tutor.getInstance();
         try{
@@ -92,13 +93,36 @@ public class TutorRestClient extends RestClient{
                 return false;
             }
             /*Tutor = restTemplate.exchange(url,HttpMethod.GET,null,
+                    new ParameterizedTypeReference<Tutor>(){}).getBody();
+           /* restTemplate.exchange(url, HttpMethod.GET, null,
+                    new ParameterizedTypeReference<Tutor>() {}).getBody();
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+    }*/
+
+    public List listar(String user) {
+        url = BASE_URL+"procuraUsuario/"+user;
+        Tutor tutor = Tutor.getInstance();
+        try{
+            List<Tutor> tutores = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Tutor>>() {
+            }).getBody();
+            if(tutores==null){
+                return null;
+            }else{
+                return tutores;
+            }
+            /*Tutor = restTemplate.exchange(url,HttpMethod.GET,null,
                     new ParameterizedTypeReference<Tutor>(){}).getBody();*/
            /* restTemplate.exchange(url, HttpMethod.GET, null,
                     new ParameterizedTypeReference<Tutor>() {}).getBody();*/
 
         }catch (Exception e){
             e.printStackTrace();
-            return false;
+            return null;
         }
 
     }

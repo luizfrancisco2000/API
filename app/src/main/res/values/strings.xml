@@ -35,4 +35,6 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="title_activity_menu_professo">MenuProfesso</string>
     <string name="title_activity_menu_tutor">MenuTutor</string>
+    <string name="title_activity_aluno_menu">ActivityAlunoMenu</string>
+    <string name="title_activity_procurar_tutor">ProcurarTutor</string>
 </resources>

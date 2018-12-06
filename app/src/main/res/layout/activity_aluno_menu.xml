@@ -9,7 +9,7 @@
     tools:openDrawer="start">
 
     <include
-        layout="@layout/app_bar_menu_tutor"
+        layout="@layout/app_bar_activity_aluno_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -19,7 +19,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_menu_tutor"
-        app:menu="@menu/activity_menu_tutor_drawer" />
+        android:background="@color/colorBackground"
+        app:headerLayout="@layout/nav_header_activity_aluno_menu"
+        app:menu="@menu/activity_aluno_menu_drawer" />
 
 </android.support.v4.widget.DrawerLayout>
