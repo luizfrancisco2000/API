@@ -18,7 +18,6 @@ import static javax.persistence.CascadeType.ALL;
  *
  * @author Aluno
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "discente")
 public class Discente extends Usuario implements Serializable {

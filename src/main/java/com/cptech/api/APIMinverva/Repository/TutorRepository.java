@@ -6,7 +6,9 @@
 package com.cptech.api.APIMinverva.Repository;
 
 import com.cptech.api.APIMinverva.Models.Tutor;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -14,4 +16,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface TutorRepository extends JpaRepository<Tutor, Long>{
     public Tutor getByUsuario(String usuario);
+    
+    @Query(value = "SELECT * FROM tutor t where t.nome like ?1 or t.usuario like ?1 and t.tipo = 'T'", nativeQuery = true)
+    public List<Tutor> tutorGetByUser(String u);
 }

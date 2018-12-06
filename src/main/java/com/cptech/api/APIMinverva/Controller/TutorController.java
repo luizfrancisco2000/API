@@ -78,6 +78,12 @@ public class TutorController {
         return new ResponseEntity<>(tutorRepositorio.save(tutorAux), HttpStatus.OK);
     }
     
+    
+    
+    @RequestMapping(method = RequestMethod.GET, path="/tutor/ProcurarUsuario/{usuario}")
+    public ResponseEntity<?> findTutorByUser(@PathVariable("usuario") String usuario){
+        return new ResponseEntity<>(tutorRepositorio.tutorGetByUser(usuario), HttpStatus.OK);
+    }
     //Procura Tutors por professor
     /*@RequestMapping(method = RequestMethod.PUT, path="/tutor/procuraComProfessor")
     public ResponseEntity<?> findTutorByProfessor(@Valid @RequestBody Professor professor){

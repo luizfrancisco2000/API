@@ -63,7 +63,6 @@ public class CodigoController {
     @RequestMapping(method = RequestMethod.GET, path="/codigo/ProcuraAluno/{id}")
     public ResponseEntity<?> findCodigoByAluno(@PathVariable("id") Long discenteID){
         ObjectMapper mapp = new ObjectMapper();
-        
         return new ResponseEntity<>(codigoRepositorio.findByDiscente(mapp.convertValue(discenteRepositorio.findById(discenteID).get(), Discente.class)), HttpStatus.OK);
     }
 }

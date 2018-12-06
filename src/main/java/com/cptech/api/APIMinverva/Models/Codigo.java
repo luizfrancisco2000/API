@@ -15,7 +15,6 @@ import javax.persistence.*;
  *
  * @author Aluno
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "codigo")
 public class Codigo implements Serializable{
