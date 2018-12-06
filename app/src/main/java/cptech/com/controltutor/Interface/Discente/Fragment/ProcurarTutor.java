@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 
 import java.util.List;
 
@@ -24,10 +25,10 @@ public class ProcurarTutor extends AppCompatActivity {
         listaTutores = findViewById(R.id.tutores_procurar);
         pesquisarTutor = findViewById(R.id.procurarTutor);
         pesquisarTutor.setSubmitButtonEnabled(true);
+        tutorRestClient = new TutorRestClient();
         pesquisarTutor.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                tutorRestClient = new TutorRestClient();
                 List<Tutor> tutores = tutorRestClient.listar(query);
                 if(tutores==null){
                     return false;
@@ -42,7 +43,7 @@ public class ProcurarTutor extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                tutorRestClient = new TutorRestClient();
+                Log.d("TAG", newText);
                 List<Tutor> tutores = tutorRestClient.listar(newText);
                 if(tutores==null){
                     return false;

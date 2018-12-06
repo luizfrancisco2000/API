@@ -14,13 +14,10 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.List;
 
+import cptech.com.controltutor.Controle.Codigo;
 import cptech.com.controltutor.Controle.Tutor;
 
 public class TutorRestClient extends RestClient{
-    //http://10.100.37.192:8000
-    //http://10.100.38.128:8000
-    //http://10.100.45.241:8000
-    //10.100.38.136
     private final String BASE_URL = BASE+ "tutor/";
     private RestTemplate restTemplate;
     private String url;
@@ -104,27 +101,21 @@ public class TutorRestClient extends RestClient{
 
     }*/
 
-    public List listar(String user) {
-        url = BASE_URL+"procuraUsuario/"+user;
-        Tutor tutor = Tutor.getInstance();
+    public List listar(String user){
+        url = BASE_URL + "ProcurarUsuario/"+user;
         try{
-            List<Tutor> tutores = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Tutor>>() {
-            }).getBody();
+            List<Tutor> tutores = restTemplate.exchange(url, HttpMethod.GET,
+                    null, new ParameterizedTypeReference<List<Tutor>>() {}).getBody();
             if(tutores==null){
+                Log.d("NAO FOI POSSIVEL","EAE");
                 return null;
             }else{
                 return tutores;
             }
-            /*Tutor = restTemplate.exchange(url,HttpMethod.GET,null,
-                    new ParameterizedTypeReference<Tutor>(){}).getBody();*/
-           /* restTemplate.exchange(url, HttpMethod.GET, null,
-                    new ParameterizedTypeReference<Tutor>() {}).getBody();*/
-
         }catch (Exception e){
             e.printStackTrace();
             return null;
         }
-
     }
 
 }
