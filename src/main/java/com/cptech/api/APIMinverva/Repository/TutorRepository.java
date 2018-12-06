@@ -17,6 +17,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface TutorRepository extends JpaRepository<Tutor, Long>{
     public Tutor getByUsuario(String usuario);
     
-    @Query(value = "SELECT * FROM tutor t where t.nome like ?1 or t.usuario like ?1 and t.tipo = 'T'", nativeQuery = true)
+    @Query(value = "SELECT * FROM tutor t where t.nome like %?1% or t.usuario like %?1% and t.tipo = 'T'", nativeQuery = true)
     public List<Tutor> tutorGetByUser(String u);
 }

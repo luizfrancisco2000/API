@@ -7,6 +7,7 @@ package com.cptech.api.APIMinverva.Controller;
 
 import com.cptech.api.APIMinverva.Models.*;
 import com.cptech.api.APIMinverva.Repository.TutorRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -82,7 +83,8 @@ public class TutorController {
     
     @RequestMapping(method = RequestMethod.GET, path="/tutor/ProcurarUsuario/{usuario}")
     public ResponseEntity<?> findTutorByUser(@PathVariable("usuario") String usuario){
-        return new ResponseEntity<>(tutorRepositorio.tutorGetByUser(usuario), HttpStatus.OK);
+        ObjectMapper mapp = new ObjectMapper();
+        return new ResponseEntity<>(mapp.convertValue(tutorRepositorio.tutorGetByUser(usuario),Tutor.class), HttpStatus.OK);
     }
     //Procura Tutors por professor
     /*@RequestMapping(method = RequestMethod.PUT, path="/tutor/procuraComProfessor")
