@@ -8,6 +8,7 @@ package com.cptech.api.APIMinverva.Controller;
 import com.cptech.api.APIMinverva.Exception.ResourceNotFoundException;
 import com.cptech.api.APIMinverva.Models.*;
 import com.cptech.api.APIMinverva.Repository.DiscenteRepository;
+import com.cptech.api.APIMinverva.Repository.TutorRepository;
 import java.util.Iterator;
 import java.util.List;
 import javax.validation.Valid;
@@ -26,6 +27,9 @@ public class DiscenteController {
 
     @Autowired
     DiscenteRepository discenteRepositorio;
+    
+    @Autowired
+    TutorRepository tutorRepositorio;
 
     //Pega Todos os Discentes
     @RequestMapping(method = RequestMethod.GET, path = "/discente")
@@ -91,8 +95,8 @@ public class DiscenteController {
         return new ResponseEntity<>(discenteRepositorio.getByTurma(turma), HttpStatus.OK);
     }
     
-    @RequestMapping(method = RequestMethod.PUT, path = "/discente/ProcuraTutor")
-    public ResponseEntity<?> getAllDiscenteTutor(@Valid @RequestBody Tutor tutor) {
-        return new ResponseEntity<>(discenteRepositorio.getByTutor(tutor), HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.PUT, path = "/discente/ProcuraTutor/{id}")
+    public ResponseEntity<?> getAllDiscenteTutor(@PathVariable("id") long id) {
+        return new ResponseEntity<>(discenteRepositorio.getByTutor(tutorRepositorio.findById(id).get()), HttpStatus.OK);
     }
 }
