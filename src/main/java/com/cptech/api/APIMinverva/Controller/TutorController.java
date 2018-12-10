@@ -99,9 +99,9 @@ public class TutorController {
         return new ResponseEntity<>(tutorRepositorio.findByTutor(tutor), HttpStatus.OK);
     }*/
     
-    @RequestMapping(method = RequestMethod.PUT, path="/tutor/procuraComTutor")
-    public ResponseEntity<?> findTutorByProfessor(@Valid @RequestBody Tutor tutor){
-        return new ResponseEntity<>(new DiscenteController().getAllDiscenteTutor(tutor), HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.PUT, path="/tutor/procuraComTutor/{id}")
+    public ResponseEntity<?> findTutorByProfessor(@PathVariable("idTutorando")Long idTutor){
+        return new ResponseEntity<>(new DiscenteController().getAllDiscenteTutor(idTutor), HttpStatus.OK);
     }
     
     
