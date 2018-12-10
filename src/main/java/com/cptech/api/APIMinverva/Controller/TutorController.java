@@ -6,6 +6,7 @@
 package com.cptech.api.APIMinverva.Controller;
 
 import com.cptech.api.APIMinverva.Models.*;
+import com.cptech.api.APIMinverva.Repository.DiscenteRepository;
 import com.cptech.api.APIMinverva.Repository.TutorRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.validation.Valid;
@@ -28,7 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class TutorController {
     @Autowired
     TutorRepository tutorRepositorio;
-
+    @Autowired
+    DiscenteRepository discenteRepositorio;
     //Pega Todos os tutors
     @RequestMapping(method = RequestMethod.GET, path = "/tutor")
     public ResponseEntity<?> getAllTutor() {
@@ -100,5 +102,11 @@ public class TutorController {
     @RequestMapping(method = RequestMethod.PUT, path="/tutor/procuraComTutor")
     public ResponseEntity<?> findTutorByProfessor(@Valid @RequestBody Tutor tutor){
         return new ResponseEntity<>(new DiscenteController().getAllDiscenteTutor(tutor), HttpStatus.OK);
+    }
+    
+    
+    @RequestMapping(method = RequestMethod.PUT, path="/tutor/adcTutorando/{idTutor}/{idTutorando}")
+    public ResponseEntity<?> insertTutorando(@PathVariable("idTutor")Long idTutor, @PathVariable("idTutorando")Long idTutorando){
+        return new ResponseEntity<>(tutorRepositorio.tutorSalveTutorando(discenteRepositorio.findById(idTutorando).get(),idTutor),HttpStatus.OK);
     }
 }

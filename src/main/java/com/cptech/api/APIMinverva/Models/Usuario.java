@@ -5,8 +5,11 @@
  */
 package com.cptech.api.APIMinverva.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
+import static javax.persistence.CascadeType.ALL;
 
 ;
 
@@ -38,6 +41,18 @@ public class Usuario implements Serializable{
     @Column(name = "senha", nullable = false, length = 70)
     private String senha;
 
+    @JsonIgnore
+    @OneToMany(cascade = ALL, mappedBy = "usuario")
+    private List<Notificacao> notificacoes;
+
+    public List<Notificacao> getNotificacoes() {
+        return notificacoes;
+    }
+
+    public void setNotificacoes(List<Notificacao> notificacoes) {
+        this.notificacoes = notificacoes;
+    }
+    
     public String getSenha() {
         return senha;
     }
