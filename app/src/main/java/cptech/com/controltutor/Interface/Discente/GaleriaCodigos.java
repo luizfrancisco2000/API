@@ -29,9 +29,6 @@ import cptech.com.controltutor.Controle.API.SessionController;
 import cptech.com.controltutor.Controle.Codigo;
 import cptech.com.controltutor.Controle.Discente;
 import cptech.com.controltutor.Interface.Adapters.CodigoAdapter;
-import cptech.com.controltutor.Interface.MainActivity;
-import cptech.com.controltutor.Interface.Professor.PerfilProfessor;
-import cptech.com.controltutor.Interface.Tutor.PerfilTutor;
 import cptech.com.controltutor.R;
 
 public class GaleriaCodigos extends AppCompatActivity{

@@ -68,7 +68,12 @@
         <activity
             android:name=".Interface.Discente.Fragment.ProcurarTutor"
             android:label="@string/title_activity_procurar_tutor"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Interface.Tutor.Fragments.TutorMenu"
+            android:label="@string/title_activity_tutor_menu"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Interface.Notificacoes.NotificacoesActivity"></activity>
     </application>
 
 </manifest>

@@ -37,4 +37,5 @@
     <string name="title_activity_menu_tutor">MenuTutor</string>
     <string name="title_activity_aluno_menu">ActivityAlunoMenu</string>
     <string name="title_activity_procurar_tutor">ProcurarTutor</string>
+    <string name="title_activity_tutor_menu">TutorMenu</string>
 </resources>

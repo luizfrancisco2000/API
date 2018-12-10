@@ -5,15 +5,15 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/search_tutor"
+            android:id="@+id/search_tutor_tutor"
             android:icon="@android:drawable/ic_search_category_default"
             android:title="Procurar Tutor" />
         <item
-            android:id="@+id/alterar_dados"
+            android:id="@+id/alterar_dados_tutor"
             android:icon="@android:drawable/ic_menu_edit"
             android:title="Editar Informações" />
         <item
-            android:id="@+id/notificacoes"
+            android:id="@+id/notificacoes_tutor"
             android:icon="@android:drawable/ic_notification_clear_all"
             android:title="Notificações" />
     </group>
@@ -21,13 +21,17 @@
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/rating_app"
+                android:id="@+id/rating_app_tutor"
                 android:icon="@android:drawable/star_big_off"
                 android:title="Avalia-nos" />
             <item
-                android:id="@+id/sac"
+                android:id="@+id/sac_tutor"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Fale Conosco" />
+            <item
+                android:id="@+id/sair_menu_tutor"
+                android:icon="@android:drawable/btn_dialog"
+                android:title="Sair" />
         </menu>
     </item>
 

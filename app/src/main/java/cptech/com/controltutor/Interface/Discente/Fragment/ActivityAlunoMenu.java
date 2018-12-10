@@ -144,6 +144,13 @@ public class ActivityAlunoMenu extends AppCompatActivity
 
         } else if (id == R.id.sac) {
 
+        }else if(id==R.id.sair_menu_aluno){
+            String aux = session.delete();
+            if (aux.equals("apagado")) {
+                Toast.makeText(ActivityAlunoMenu.this, "Sessão Finalizada... \n Retornando ao menu principal", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ActivityAlunoMenu.this, MainActivity.class);
+                startActivity(intent);
+            }
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
