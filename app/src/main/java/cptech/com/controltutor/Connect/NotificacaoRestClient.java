@@ -47,7 +47,7 @@ public class NotificacaoRestClient extends RestClient {
     }
 
     public List<Notificacao> pequisaNotificacao(Long aLong) {
-        url = BASE_URL + "notificacao/user"+aLong;
+        url = BASE_URL + "user/"+aLong;
         return restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Notificacao>>() {}).getBody();
     }
 }

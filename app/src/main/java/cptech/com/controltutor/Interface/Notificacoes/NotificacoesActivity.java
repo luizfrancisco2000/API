@@ -43,6 +43,7 @@ public class NotificacoesActivity extends AppCompatActivity {
     public class NoticacoesTela extends AsyncTask<Long,Void,List<Notificacao>>{
         @Override
         protected List<Notificacao> doInBackground(Long... longs) {
+            nrc = new NotificacaoRestClient();
             return nrc.pequisaNotificacao(longs[0]);
         }
     }
