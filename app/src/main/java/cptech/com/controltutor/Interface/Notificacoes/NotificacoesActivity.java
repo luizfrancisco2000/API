@@ -25,7 +25,7 @@ public class NotificacoesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notificacoes);
-        listaNotify = findViewById(R.id.codigos_discente);
+        listaNotify = findViewById(R.id.notif_recycler);
         session = new SessionController(getApplicationContext());
         NotificacoesAdapter adapter = null;
         try {
