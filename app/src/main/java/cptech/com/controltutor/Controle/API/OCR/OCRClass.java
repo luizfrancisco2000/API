@@ -6,12 +6,9 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.widget.ImageView;
 
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.text.TextBlock;
-import com.google.android.gms.vision.text.TextRecognizer;
 
 public class OCRClass {
-    Frame frame;
+   /* Frame frame;
     TextRecognizer ocr;
     public OCRClass(Context context, Bitmap imagem){
         ocr = new TextRecognizer.Builder(context).build();
@@ -32,5 +29,5 @@ public class OCRClass {
             return text.append("erro");
         }
         return text;
-    }
+    }*/
 }

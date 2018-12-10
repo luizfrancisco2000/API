@@ -4,9 +4,6 @@ import android.util.Log;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.google.gson.Gson;
-
 import org.json.JSONObject;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -44,7 +41,6 @@ public class CodigoRestClient extends RestClient{
             Log.i("Erro",codigo.getAssunto());
             valuesDiscente.put("assunto", codigo.getAssunto());
             valuesDiscente.put("enunciado", codigo.getEnunciado());
-            valuesDiscente.put("resolucao",  new Gson().toJson(singleProcessRequest));
             valuesDiscente.put("avaliacao", codigo.getAvaliacao());
             valuesDiscente.put("discente", codigo.getDiscente().toString());
             JSONObject jsonObject = new JSONObject();
@@ -78,6 +74,22 @@ public class CodigoRestClient extends RestClient{
                 return null;
             }else{
                 return codigos;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public List<Discente> listAllCodigosByTutorDiscente(Long idTutor){
+        url = BASE_URL + "ProcuraAluno/"+idTutor;
+        try{
+            List<Discente> discentes = restTemplate.exchange(url, HttpMethod.GET,
+                    null, new ParameterizedTypeReference<List<Discente>>() {}).getBody();
+            if(discentes==null){
+                Log.d("NAO FOI POSSIVEL","EAE");
+                return null;
+            }else{
+                return discentes;
             }
         }catch (Exception e){
             e.printStackTrace();

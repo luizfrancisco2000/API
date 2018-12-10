@@ -33,8 +33,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.vision.text.TextRecognizer;
-
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -215,8 +213,8 @@ public class CadastroCodigo extends AppCompatActivity {
             verFoto.buildDrawingCache();
             bmp = (BitmapFactory.decodeFile(picturePath));
             verFoto.setImageBitmap(bmp);
-            OCRClass ocr = new OCRClass(verFoto.getContext(), bmp);
-            codigoText.setText(ocr.readToImage());
+            //OCRClass ocr = new OCRClass(verFoto.getContext(), bmp);
+            //codigoText.setText(ocr.readToImage());
             File aux = transformarTextToC();
             try {
                 FileInputStream fis = new FileInputStream(aux);
